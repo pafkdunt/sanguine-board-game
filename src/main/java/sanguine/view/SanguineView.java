@@ -21,4 +21,6 @@ public interface SanguineView {
    * @throws IllegalArgumentException if the listener is null
    */
   void subscribe(FeaturesListener listener) throws IllegalArgumentException;
+
+  void notifyPlayer();
 }

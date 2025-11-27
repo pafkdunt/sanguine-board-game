@@ -30,4 +30,6 @@ public interface FeaturesListener {
    * @param key the key they pressed
    */
   void handleKeyPressed(String key);
+
+  void handleTeamChange();
 }

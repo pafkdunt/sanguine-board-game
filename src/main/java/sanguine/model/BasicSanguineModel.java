@@ -3,6 +3,7 @@ package sanguine.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import sanguine.view.FeaturesListener;
 
 /**
  * Class representing a basic model of the game Sanguine.
@@ -209,6 +210,16 @@ public class BasicSanguineModel implements SanguineModel {
     } else {
       return new ArrayList<>(blueHand);
     }
+  }
+
+  @Override
+  public List<Card> getRedHand() throws IllegalStateException {
+    return new ArrayList<>(redHand);
+  }
+
+  @Override
+  public List<Card> getBlueHand() throws IllegalStateException {
+    return new ArrayList<>(blueHand);
   }
 
   /**

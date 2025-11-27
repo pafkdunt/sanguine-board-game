@@ -1,5 +1,10 @@
 package sanguine;
 
+import java.awt.Component;
+import javax.swing.SwingUtilities;
+import sanguine.Player.BluePlayer;
+import sanguine.Player.RedPlayer;
+import sanguine.Player.UserPlayer;
 import sanguine.ai.FillFirst;
 import sanguine.ai.MaximizeRowScore;
 import sanguine.controller.BasicSanguineController;
@@ -7,6 +12,7 @@ import sanguine.controller.SanguineController;
 import sanguine.model.BasicSanguineModel;
 import sanguine.model.Team;
 import sanguine.model.ViewModel;
+import sanguine.view.FeaturesListener;
 import sanguine.view.SanguineFrameView;
 import sanguine.view.SanguineView;
 
@@ -23,25 +29,22 @@ public class Sanguine {
   public static void main(String[] args) {
     String file = "docs/exampleScreenshot.deck";
     BasicSanguineModel model =
-        new BasicSanguineModel(5, 7, 5, file, file, false);
-    // FillFirst fillFirst1 = new FillFirst(model, Team.RED);
-    // FillFirst fillFirst2 = new FillFirst(model, Team.BLUE);
-    MaximizeRowScore max1 = new MaximizeRowScore(model, Team.RED);
-    MaximizeRowScore max2 = new MaximizeRowScore(model, Team.BLUE);
+        new BasicSanguineModel(2, 5, 7, file, file, false);
 
-    while (true) {
-      try {
-        // fillFirst1.makeMove();
-        // fillFirst2.makeMove();
-        max1.makeMove();
-        max2.makeMove();
-      } catch (IllegalStateException e) {
-        break;
-      }
-    }
 
-    SanguineView view = new SanguineFrameView(new ViewModel(model));
-    view.display(true);
-    SanguineController controller = new BasicSanguineController(view);
+    SanguineView viewRed = new SanguineFrameView(new ViewModel(model), Team.RED);
+    SanguineView viewBlue = new SanguineFrameView(new ViewModel(model), Team.BLUE);
+
+    UserPlayer redPlayer = new RedPlayer(model, false);
+    UserPlayer bluePlayer = new BluePlayer(model, true);
+
+    SanguineController controllerRed = new BasicSanguineController(viewRed, redPlayer);
+    SanguineController controllerBlue = new BasicSanguineController(viewBlue, bluePlayer);
+
+    controllerRed.playGame();
+    controllerBlue.playGame();
+
+    redPlayer.subscribe((FeaturesListener) controllerBlue);
+    bluePlayer.subscribe((FeaturesListener) controllerRed);
   }
 }

@@ -70,6 +70,15 @@ public class SanguineBoardPanel extends JPanel implements MainPanel {
     this.highlightCell(listener);
   }
 
+  @Override
+  public void refresh() {
+    System.out.println("Refreshing board");
+    this.removeAll();
+    this.repaint();
+    this.revalidate();
+    this.setup();
+  }
+
   /**
    * Highlights a cell that has been clicked on with the mouse, and
    * calls the listener to handle the cell click.

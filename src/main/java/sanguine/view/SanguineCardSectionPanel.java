@@ -6,34 +6,43 @@ import java.util.List;
 import javax.swing.JPanel;
 import sanguine.model.Card;
 import sanguine.model.Team;
+import sanguine.model.ViewModel;
 
 /**
  * Represents the lower half of the frame, showing the cards in the hand of the current player.
  */
 public class SanguineCardSectionPanel extends JPanel implements MainPanel {
-  private final List<Card> hand;
+  private ViewModel model;
   private final Team team;
   private int previousCardIndex;
 
   /**
    * Constructs the drawing of the hand for the current player.
    *
-   * @param hand is the hand of the current player
+   * @param model a read-only model to use the observers available to construct the panel
    * @param team is the team of that current player
    * @throws IllegalArgumentException hand is null
    * @throws IllegalArgumentException team is null
    */
-  public SanguineCardSectionPanel(List<Card> hand, Team team) throws IllegalArgumentException {
-    if (hand == null) {
-      throw new IllegalArgumentException("Hand cannot be null.");
+  public SanguineCardSectionPanel(ViewModel model, Team team) throws IllegalArgumentException {
+    if (model == null) {
+      throw new IllegalArgumentException("Model cannot be null.");
     }
 
     if (team == null) {
       throw new IllegalArgumentException("Team of the hand cannot be null.");
     }
-    this.hand = hand;
+
+    this.model = model;
     this.team = team;
     this.previousCardIndex = -1;
+    List<Card> hand;
+
+    if (this.team == Team.RED) {
+      hand = model.getRedHand();
+    } else {
+      hand = model.getBlueHand();
+    }
 
     for (Card card : hand) {
       SanguineCardPanel cardPanel = new SanguineCardPanel(card);
@@ -48,6 +57,26 @@ public class SanguineCardSectionPanel extends JPanel implements MainPanel {
     }
 
     this.highlightCard(listener);
+  }
+
+  @Override
+  public void refresh() {
+    this.removeAll();
+    this.repaint();
+    this.revalidate();
+
+    List<Card> hand;
+
+    if (this.team == Team.RED) {
+      hand = model.getRedHand();
+    } else {
+      hand = model.getBlueHand();
+    }
+
+    for (Card card : hand) {
+      SanguineCardPanel cardPanel = new SanguineCardPanel(card);
+      this.add(cardPanel);
+    }
   }
 
   /**
@@ -65,6 +94,17 @@ public class SanguineCardSectionPanel extends JPanel implements MainPanel {
     this.addMouseListener(new MouseAdapter() {
       @Override
       public void mouseClicked(MouseEvent e) {
+        if (SanguineCardSectionPanel.this.team != model.getCurrentPlayer()) {
+          return;
+        }
+
+        List<Card> hand;
+
+        if (SanguineCardSectionPanel.this.team == Team.RED) {
+          hand = model.getRedHand();
+        } else {
+          hand = model.getBlueHand();
+        }
         int handSize = hand.size();
         double cardWidth = (double) getWidth() / handSize;
         int index = ((int) Math.ceil(e.getX() / cardWidth)) - 1;

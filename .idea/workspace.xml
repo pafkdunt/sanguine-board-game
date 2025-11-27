@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a1964ced-f441-4136-85f2-99c659fb2f83" name="Changes" comment="" />
+    <list default="true" id="a1964ced-f441-4136-85f2-99c659fb2f83" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/modules/f25-hw07-groups-group-Jungmin_Rohan.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sanguine/TestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/sanguine/TestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/Sanguine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/Sanguine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/controller/BasicSanguineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/controller/BasicSanguineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/controller/SanguineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/controller/SanguineController.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -32,6 +40,13 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -45,12 +60,45 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Gradle.f25-hw07-groups-group-Jungmin_Rohan [:sanguine.Sanguine.main()].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/java/sanguine" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="Sanguine" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="sanguine.Sanguine" />
+      <module name="f25-hw07-groups-group-Jungmin_Rohan.main" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="sanguine.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Sanguine" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -66,7 +114,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1764256344930</updated>
-      <workItem from="1764256346100" duration="22000" />
+      <workItem from="1764256346100" duration="5117000" />
     </task>
     <servers />
   </component>

@@ -5,4 +5,6 @@ package sanguine.controller;
  * and view components to facilitate the game.
  */
 public interface SanguineController {
+
+  void playGame();
 }
