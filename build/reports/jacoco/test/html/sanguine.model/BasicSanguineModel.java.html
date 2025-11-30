@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>BasicSanguineModel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.model</a> &gt; <span class="el_source">BasicSanguineModel.java</span></div><h1>BasicSanguineModel.java</h1><pre class="source lang-java linenums">package sanguine.model;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * Class representing a basic model of the game Sanguine.
+ */
+public class BasicSanguineModel implements SanguineModel {
+  private final Board board;
+  private final List&lt;Card&gt; redHand;
+  private final List&lt;Card&gt; blueHand;
+  private final List&lt;Card&gt; redDeck;
+  private final List&lt;Card&gt; blueDeck;
+  private final int[] redScore;
+  private final int[] blueScore;
+  private Team currentPlayer;
+  private int passes;
+  // INVARIANT: passes is that greater than or equal to 0 and less than or equal to 2
+  private final int rows;
+  private final int cols;
+
+  /**
+   * Constructor for the Game object. Takes in the number of rows &amp; columns,
+   * and the size of the hand of each player, then initializes the game.
+   *
+   * @param rows the integer number of rows in the game (board)
+   * @param cols the integer number of columns in the game (board)
+   * @param handSize the integer number of cards each player can hold
+   * @param redFile the file that is used to create the Red player's deck
+   * @param blueFile the file that is used to create the Blue player's deck
+   * @param redFlip whether we are flipping the Cards so the Red player has the flipped Cards
+   *                and the Blue player doesn't (in a default/regular game this would be false)
+   * @throws IllegalArgumentException if the hand size is greater than the third of the deck size
+   * @throws IllegalArgumentException if deck contains more than two duplicates of any card
+   */
+  public BasicSanguineModel(int rows, int cols, int handSize, String redFile,
+<span class="fc" id="L39">                            String blueFile, boolean redFlip) throws IllegalArgumentException {</span>
+
+<span class="pc bpc" id="L41" title="3 of 6 branches missed.">    if (rows &lt;= 0 || cols &lt;= 1 || (cols % 2) == 0) {</span>
+<span class="nc" id="L42">      throw new IllegalArgumentException(&quot;Invalid rows or columns amount.&quot;);</span>
+    }
+
+<span class="fc" id="L45">    this.rows = rows;</span>
+<span class="fc" id="L46">    this.cols = cols;</span>
+<span class="fc" id="L47">    this.board = new SanguineBoard(this.rows, this.cols);</span>
+
+<span class="fc" id="L49">    this.redDeck = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L50">    this.blueDeck = new ArrayList&lt;&gt;();</span>
+
+<span class="fc" id="L52">    DeckCreator.createDeck(redDeck, redFlip, redFile);</span>
+<span class="pc bpc" id="L53" title="1 of 2 branches missed.">    DeckCreator.createDeck(blueDeck, !redFlip, blueFile);</span>
+
+<span class="pc bpc" id="L55" title="1 of 2 branches missed.">    if (this.redDeck.size() &lt; this.rows * this.cols</span>
+<span class="pc bpc" id="L56" title="1 of 2 branches missed.">        || this.blueDeck.size() &lt; this.rows * this.cols) {</span>
+<span class="nc" id="L57">      throw new IllegalArgumentException(&quot;Given an invalid deck. &quot;</span>
+          + &quot;Must be enough cards in each deck to possibly fill every cell on the board&quot;);
+    }
+
+<span class="fc bfc" id="L61" title="All 2 branches covered.">    if (handSize &gt; (this.redDeck.size() / 3)) {</span>
+<span class="fc" id="L62">      throw new IllegalArgumentException(&quot;Invalid hand size.&quot;);</span>
+    }
+
+<span class="fc" id="L65">    this.redHand = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L66">    this.blueHand = new ArrayList&lt;&gt;();</span>
+
+<span class="fc bfc" id="L68" title="All 2 branches covered.">    for (int i = 0; i &lt; handSize; i++) {</span>
+<span class="fc" id="L69">      this.redHand.add(this.redDeck.removeFirst());</span>
+<span class="fc" id="L70">      this.blueHand.add(this.blueDeck.removeFirst());</span>
+    }
+
+<span class="fc" id="L73">    this.redScore = new int[rows];</span>
+<span class="fc" id="L74">    this.blueScore = new int[rows];</span>
+
+<span class="fc" id="L76">    this.currentPlayer = Team.RED;</span>
+<span class="fc" id="L77">    this.passes = 0;</span>
+<span class="fc" id="L78">    this.drawCard();</span>
+<span class="fc" id="L79">  }</span>
+
+  @Override
+  public void move(int card, int row, int col) throws IllegalStateException {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (this.isGameOver()) {</span>
+<span class="fc" id="L84">      throw new IllegalStateException(&quot;Game is over. Cannot make a move.&quot;);</span>
+    }
+
+<span class="fc bfc" id="L87" title="All 8 branches covered.">    if (row &lt; 0 || row &gt; this.rows - 1 || col &lt; 0 || col &gt; this.cols - 1) {</span>
+<span class="fc" id="L88">      throw new IllegalArgumentException(</span>
+          &quot;Invalid cell selected. Must choose a valid cell for a move.&quot;);
+    }
+
+    // aliases to make code simpler
+    List&lt;Card&gt; hand;
+    int[] rowScoreList;
+
+<span class="fc bfc" id="L96" title="All 2 branches covered.">    if (currentPlayer == Team.RED) {</span>
+<span class="fc" id="L97">      hand = this.redHand;</span>
+<span class="fc" id="L98">      rowScoreList = this.redScore;</span>
+    } else {
+<span class="fc" id="L100">      hand = this.blueHand;</span>
+<span class="fc" id="L101">      rowScoreList = this.blueScore;</span>
+    }
+
+<span class="fc bfc" id="L104" title="All 4 branches covered.">    if (card &lt; 0 || card &gt; hand.size() - 1) {</span>
+<span class="fc" id="L105">      throw new IllegalArgumentException(</span>
+          &quot;Invalid card selected. Must choose a valid card in the hand.&quot;);
+    }
+
+<span class="fc" id="L109">    this.board.performMove(hand.get(card), row, col);</span>
+<span class="fc" id="L110">    rowScoreList[row] += hand.get(card).value();</span>
+
+<span class="fc" id="L112">    hand.remove(card);</span>
+
+<span class="fc" id="L114">    this.changePlayer();</span>
+<span class="fc" id="L115">    this.passes = 0;</span>
+<span class="fc" id="L116">  }</span>
+
+  @Override
+  public void passTurn() throws IllegalStateException {
+<span class="fc bfc" id="L120" title="All 2 branches covered.">    if (this.isGameOver()) {</span>
+<span class="fc" id="L121">      throw new IllegalStateException(&quot;Game is over. Cannot pass your turn.&quot;);</span>
+    }
+
+<span class="fc" id="L124">    this.passes++;</span>
+<span class="fc bfc" id="L125" title="All 2 branches covered.">    if (!this.isGameOver()) {</span>
+<span class="fc" id="L126">      this.changePlayer();</span>
+    }
+<span class="fc" id="L128">  }</span>
+
+  @Override
+  public boolean isGameOver() {
+<span class="fc bfc" id="L132" title="All 2 branches covered.">    return passes &gt;= 2;</span>
+  }
+
+  @Override
+  public Team findWinner() throws IllegalStateException {
+<span class="fc bfc" id="L137" title="All 2 branches covered.">    if (!(this.isGameOver())) {</span>
+<span class="fc" id="L138">      throw new IllegalStateException(&quot;Game is not over. There is no winner yet.&quot;);</span>
+    }
+
+    int redTotalScore;
+    int blueTotalScore;
+
+<span class="fc" id="L144">    redTotalScore = getCurrentScore(Team.RED);</span>
+<span class="fc" id="L145">    blueTotalScore = getCurrentScore(Team.BLUE);</span>
+
+<span class="fc bfc" id="L147" title="All 2 branches covered.">    if (redTotalScore &gt; blueTotalScore) {</span>
+<span class="fc" id="L148">      return Team.RED;</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">    } else if (blueTotalScore &gt; redTotalScore) {</span>
+<span class="fc" id="L150">      return Team.BLUE;</span>
+    } else {
+<span class="fc" id="L152">      return null;</span>
+    }
+  }
+
+  @Override
+  public int[] getRedScore() {
+<span class="fc" id="L158">    return Arrays.copyOf(this.redScore, this.redScore.length);</span>
+  }
+
+  @Override
+  public int[] getBlueScore() {
+<span class="fc" id="L163">    return Arrays.copyOf(this.blueScore, this.blueScore.length);</span>
+  }
+
+  @Override
+  public int getRows() {
+<span class="fc" id="L168">    return this.rows;</span>
+  }
+
+  @Override
+  public int getCols() {
+<span class="fc" id="L173">    return this.cols;</span>
+  }
+
+  @Override
+  public Team getCurrentPlayer() {
+<span class="fc" id="L178">    return this.currentPlayer;</span>
+  }
+
+  @Override
+  public Cell getCell(int row, int col) throws IllegalArgumentException {
+<span class="fc" id="L183">    return new SanguineCell(board.getCell(row, col).getPawns(),</span>
+<span class="fc" id="L184">        board.getCell(row, col).getTeam(), board.getCell(row, col).getValue());</span>
+  }
+
+  @Override
+  public int getCurrentScore(Team team) {
+<span class="fc" id="L189">    int redTotalScore = 0;</span>
+<span class="fc" id="L190">    int blueTotalScore = 0;</span>
+
+<span class="fc bfc" id="L192" title="All 2 branches covered.">    for (int row = 0; row &lt; rows; row++) {</span>
+<span class="fc bfc" id="L193" title="All 2 branches covered.">      if (this.redScore[row] &lt; this.blueScore[row]) {</span>
+<span class="fc" id="L194">        blueTotalScore += this.blueScore[row];</span>
+<span class="fc bfc" id="L195" title="All 2 branches covered.">      } else if (this.blueScore[row] &lt; this.redScore[row]) {</span>
+<span class="fc" id="L196">        redTotalScore += this.redScore[row];</span>
+      }
+    }
+
+<span class="fc bfc" id="L200" title="All 2 branches covered.">    if (team.equals(Team.RED)) {</span>
+<span class="fc" id="L201">      return redTotalScore;</span>
+    } else {
+<span class="fc" id="L203">      return blueTotalScore;</span>
+    }
+  }
+
+  @Override
+  public List&lt;Card&gt; getCurrentHand() {
+<span class="fc bfc" id="L209" title="All 2 branches covered.">    if (this.currentPlayer == Team.RED) {</span>
+<span class="fc" id="L210">      return new ArrayList&lt;&gt;(redHand);</span>
+    } else {
+<span class="fc" id="L212">      return new ArrayList&lt;&gt;(blueHand);</span>
+    }
+  }
+
+  @Override
+  public List&lt;Card&gt; getRedHand() {
+<span class="nc" id="L218">    return new ArrayList&lt;&gt;(redHand);</span>
+  }
+
+  @Override
+  public List&lt;Card&gt; getBlueHand() {
+<span class="nc" id="L223">    return new ArrayList&lt;&gt;(blueHand);</span>
+  }
+
+  /**
+   * Passes the turn to the next player. If the game is already over, throws an error.
+   *
+   * @throws IllegalStateException if the game is over
+   */
+  private void changePlayer() throws IllegalStateException {
+<span class="pc bpc" id="L232" title="1 of 2 branches missed.">    if (this.isGameOver()) {</span>
+<span class="nc" id="L233">      throw new IllegalStateException(&quot;Game is over. Cannot change players.&quot;);</span>
+    }
+
+<span class="fc bfc" id="L236" title="All 2 branches covered.">    if (this.currentPlayer == Team.RED) {</span>
+<span class="fc" id="L237">      this.currentPlayer = Team.BLUE;</span>
+<span class="fc" id="L238">      this.drawCard();</span>
+    } else {
+<span class="fc" id="L240">      this.currentPlayer = Team.RED;</span>
+<span class="fc" id="L241">      this.drawCard();</span>
+    }
+<span class="fc" id="L243">  }</span>
+
+  private void drawCard() throws IllegalStateException {
+<span class="pc bpc" id="L246" title="1 of 2 branches missed.">    if (this.isGameOver()) {</span>
+<span class="nc" id="L247">      throw new IllegalStateException(&quot;Game is over. Cannot draw a card.&quot;);</span>
+    }
+
+    List&lt;Card&gt; deck;
+    List&lt;Card&gt; hand;
+
+<span class="fc bfc" id="L253" title="All 2 branches covered.">    if (currentPlayer == Team.RED) {</span>
+<span class="fc" id="L254">      deck = this.redDeck;</span>
+<span class="fc" id="L255">      hand = this.redHand;</span>
+    } else {
+<span class="fc" id="L257">      deck = this.blueDeck;</span>
+<span class="fc" id="L258">      hand = this.blueHand;</span>
+    }
+
+<span class="pc bpc" id="L261" title="1 of 2 branches missed.">    if (!deck.isEmpty()) {</span>
+<span class="fc" id="L262">      hand.add(deck.removeFirst());</span>
+    }
+<span class="fc" id="L264">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

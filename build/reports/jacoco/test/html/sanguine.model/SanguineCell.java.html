@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SanguineCell.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.model</a> &gt; <span class="el_source">SanguineCell.java</span></div><h1>SanguineCell.java</h1><pre class="source lang-java linenums">package sanguine.model;
+
+/**
+ * Class that represents the cells of the board.
+ */
+public class SanguineCell implements Cell {
+  private int pawns;
+  private Team team;
+  private int valueOfCard;
+
+  /**
+   * Constructor for the initial Cell object.
+   *
+   * @param pawns integer number of pawns in the cell
+   * @param team enum team of the cell
+   */
+<span class="fc" id="L17">  public SanguineCell(int pawns, Team team) {</span>
+<span class="fc" id="L18">    this.pawns = pawns;</span>
+<span class="fc" id="L19">    this.team = team;</span>
+<span class="fc" id="L20">    this.valueOfCard = 0;</span>
+<span class="fc" id="L21">  }</span>
+
+  /**
+   * Constructor for the copy of a Cell object.
+   *
+   * @param pawns integer number of pawns in the cell
+   * @param team enum team of the cell
+   * @param valueOfCard integer number of the value of the card in cell
+   */
+<span class="fc" id="L30">  public SanguineCell(int pawns, Team team, int valueOfCard) {</span>
+<span class="fc" id="L31">    this.pawns = pawns;</span>
+<span class="fc" id="L32">    this.team = team;</span>
+<span class="fc" id="L33">    this.valueOfCard = valueOfCard;</span>
+<span class="fc" id="L34">  }</span>
+
+  @Override
+  public void convertTeam(Team team) {
+<span class="fc" id="L38">    this.team = team;</span>
+<span class="fc" id="L39">  }</span>
+
+  @Override
+  public void addPawn() {
+<span class="fc bfc" id="L43" title="All 2 branches covered.">    if (this.pawns &lt; 3) {</span>
+<span class="fc" id="L44">      this.pawns++;</span>
+    }
+<span class="fc" id="L46">  }</span>
+
+  @Override
+  public void placeCard(Card card) throws IllegalArgumentException {
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">    if (card == null) {</span>
+<span class="nc" id="L51">      throw new IllegalArgumentException(&quot;Card cannot be null.&quot;);</span>
+    }
+
+<span class="fc bfc" id="L54" title="All 2 branches covered.">    if (card.team() != this.team) {</span>
+<span class="fc" id="L55">      throw new IllegalArgumentException(&quot;This is not your cell.&quot;);</span>
+    }
+
+<span class="fc bfc" id="L58" title="All 2 branches covered.">    if (card.cost() &gt; this.pawns) {</span>
+<span class="fc" id="L59">      throw new IllegalArgumentException(&quot;Not enough pawns to place this card.&quot;);</span>
+    }
+
+<span class="fc" id="L62">    this.valueOfCard = card.value();</span>
+<span class="fc" id="L63">    this.pawns = 0;</span>
+<span class="fc" id="L64">  }</span>
+
+  @Override
+  public int getPawns() {
+<span class="fc" id="L68">    return this.pawns;</span>
+  }
+
+  @Override
+  public Team getTeam() {
+<span class="fc" id="L73">    return this.team;</span>
+  }
+
+  @Override
+  public int getValue() {
+<span class="fc" id="L78">    return this.valueOfCard;</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="fc bfc" id="L83" title="All 2 branches covered.">    if (this.getValue() &gt; 0) {</span>
+<span class="pc bpc" id="L84" title="1 of 2 branches missed.">      if (this.team == Team.RED) {</span>
+<span class="fc" id="L85">        return &quot;R&quot;;</span>
+      } else {
+<span class="nc" id="L87">        return &quot;B&quot;;</span>
+      }
+    }
+
+<span class="pc bpc" id="L91" title="1 of 2 branches missed.">    if (this.pawns &gt; 0) {</span>
+<span class="fc" id="L92">      return Integer.toString(this.pawns);</span>
+    }
+
+<span class="nc" id="L95">    return &quot;_&quot;;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

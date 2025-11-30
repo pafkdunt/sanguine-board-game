@@ -1,17 +1,13 @@
 package sanguine;
 
-import java.awt.Component;
-import javax.swing.SwingUtilities;
-import sanguine.Player.BluePlayer;
-import sanguine.Player.RedPlayer;
-import sanguine.Player.UserPlayer;
-import sanguine.ai.FillFirst;
-import sanguine.ai.MaximizeRowScore;
 import sanguine.controller.BasicSanguineController;
 import sanguine.controller.SanguineController;
 import sanguine.model.BasicSanguineModel;
 import sanguine.model.Team;
 import sanguine.model.ViewModel;
+import sanguine.player.BluePlayer;
+import sanguine.player.RedPlayer;
+import sanguine.player.UserPlayer;
 import sanguine.view.FeaturesListener;
 import sanguine.view.SanguineFrameView;
 import sanguine.view.SanguineView;
@@ -45,6 +41,8 @@ public class Sanguine {
     controllerBlue.playGame();
 
     redPlayer.subscribe((FeaturesListener) controllerBlue);
+    redPlayer.subscribe((FeaturesListener) controllerRed);
     bluePlayer.subscribe((FeaturesListener) controllerRed);
+    bluePlayer.subscribe((FeaturesListener) controllerBlue);
   }
 }

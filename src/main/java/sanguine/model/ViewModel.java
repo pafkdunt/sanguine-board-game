@@ -65,17 +65,17 @@ public class ViewModel implements ReadonlySanguineModel {
   }
 
   @Override
-  public List<Card> getCurrentHand() throws IllegalStateException {
+  public List<Card> getCurrentHand() {
     return model.getCurrentHand();
   }
 
   @Override
-  public List<Card> getRedHand() throws IllegalStateException {
+  public List<Card> getRedHand() {
     return  model.getRedHand();
   }
 
   @Override
-  public List<Card> getBlueHand() throws IllegalStateException {
+  public List<Card> getBlueHand() {
     return model.getBlueHand();
   }
 }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.23.1">
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\FillFirstTest.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\MaximizeRowTest.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\ArbitraryMoveWinsRowModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\ArbitraryValidMoveModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\FillInModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\FirstMoveValidModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\FirstMoveWinsRowModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\NoMovesThatWinRowsModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\NoValidMoveModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\TopToBottomLoggingModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\ai\mocks\TopToBottomLoggingRowsModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\model\BasicSanguineModelTest.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\model\SanguineBoardTest.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\model\SanguineCardTest.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\test\java\sanguine\model\SanguineCellTest.java">
+</file>
+</checkstyle>

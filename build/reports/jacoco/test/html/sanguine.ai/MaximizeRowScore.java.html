@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MaximizeRowScore.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.ai</a> &gt; <span class="el_source">MaximizeRowScore.java</span></div><h1>MaximizeRowScore.java</h1><pre class="source lang-java linenums">package sanguine.ai;
+
+import java.util.List;
+import sanguine.model.Card;
+import sanguine.model.SanguineModel;
+import sanguine.model.Team;
+
+/**
+ * Class representing the strategy of placing first card that would win a row, moving from the top.
+ */
+public class MaximizeRowScore implements StrategicComputerPlayers {
+  private final SanguineModel model;
+  private final Team team;
+
+  /**
+   * Constructs an object that behaves as the specified computer player.
+   *
+   * @param model the model of the Sanguine game this strategy will be applied on
+   * @param team the team of this computer player
+   */
+<span class="fc" id="L21">  public MaximizeRowScore(SanguineModel model, Team team) {</span>
+<span class="fc bfc" id="L22" title="All 4 branches covered.">    if (model == null || team == null) {</span>
+<span class="fc" id="L23">      throw new IllegalArgumentException(&quot;Null argument found&quot;);</span>
+    }
+<span class="fc" id="L25">    this.model = model;</span>
+<span class="fc" id="L26">    this.team = team;</span>
+<span class="fc" id="L27">  }</span>
+
+  @Override
+  public void makeMove() {
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">    if (model.getCurrentPlayer() != team) {</span>
+<span class="nc" id="L32">      return;</span>
+    }
+
+<span class="fc" id="L35">    List&lt;Card&gt; hand = model.getCurrentHand();</span>
+
+    int[] ourScores;
+    int[] opponentScores;
+
+<span class="pc bpc" id="L40" title="1 of 2 branches missed.">    if (team == Team.BLUE) {</span>
+<span class="nc" id="L41">      ourScores = model.getBlueScore();</span>
+<span class="nc" id="L42">      opponentScores = model.getRedScore();</span>
+    } else {
+<span class="fc" id="L44">      ourScores = model.getRedScore();</span>
+<span class="fc" id="L45">      opponentScores = model.getBlueScore();</span>
+    }
+
+<span class="fc bfc" id="L48" title="All 2 branches covered.">    for (int index = 0; index &lt; hand.size(); index++) {</span>
+<span class="fc bfc" id="L49" title="All 2 branches covered.">      for (int row = 0; row &lt; model.getRows(); row++) {</span>
+<span class="fc bfc" id="L50" title="All 2 branches covered.">        for (int col = 0; col &lt; model.getCols(); col++) {</span>
+<span class="fc bfc" id="L51" title="All 2 branches covered.">          if (hand.get(index).value() + ourScores[row] &gt; opponentScores[row]) {</span>
+            try {
+<span class="fc" id="L53">              model.move(index, row, col);</span>
+<span class="fc" id="L54">              return;</span>
+<span class="fc" id="L55">            } catch (IllegalArgumentException e) {</span>
+              // empty catch
+            }
+          }
+        }
+      }
+    }
+
+<span class="fc" id="L63">    model.passTurn();</span>
+<span class="fc" id="L64">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

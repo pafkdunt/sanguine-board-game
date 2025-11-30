@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="10.23.1">
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\ai\FillFirst.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\ai\MaximizeRowScore.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\ai\StrategicComputerPlayers.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\controller\BasicSanguineController.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\controller\SanguineController.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\BasicSanguineModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\Board.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\Card.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\Cell.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\DeckCreator.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\ReadonlySanguineModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\SanguineBoard.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\SanguineCard.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\SanguineCell.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\SanguineModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\Team.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\model\ViewModel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\player\AbstractUserPlayer.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\player\BluePlayer.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\player\RedPlayer.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\player\UserPlayer.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\Sanguine.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\FeaturesListener.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\MainPanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineBoardPanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineCardPanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineCardSectionPanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineCellPanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineFrameView.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineInfluenceGridPanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineScorePanel.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SanguineView.java">
+</file>
+<file name="C:\f25-hw07-groups-group-Jungmin_Rohan\src\main\java\sanguine\view\SubPanel.java">
+</file>
+</checkstyle>

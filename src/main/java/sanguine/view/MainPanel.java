@@ -15,5 +15,8 @@ public interface MainPanel {
    */
   void subscribe(FeaturesListener listener) throws IllegalArgumentException;
 
+  /**
+   * Repaints the panel to reflect the changes made to the state of the game.
+   */
   void refresh();
 }

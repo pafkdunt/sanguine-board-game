@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>AbstractUserPlayer.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.player</a> &gt; <span class="el_source">AbstractUserPlayer.java</span></div><h1>AbstractUserPlayer.java</h1><pre class="source lang-java linenums">package sanguine.player;
+
+import java.util.ArrayList;
+import java.util.List;
+import sanguine.ai.MaximizeRowScore;
+import sanguine.ai.StrategicComputerPlayers;
+import sanguine.model.SanguineModel;
+import sanguine.model.Team;
+import sanguine.view.FeaturesListener;
+
+/**
+ * Abstract class implements functionality of the Player
+ * and uses the factory method to decide which player is making the move.
+ */
+public abstract class AbstractUserPlayer implements UserPlayer {
+  private final SanguineModel model;
+  private final List&lt;FeaturesListener&gt; listeners;
+  private final boolean machine;
+
+  /**
+   * Constructs an abstract player.
+   *
+   * @param model is the model of the game Sanguine
+   */
+<span class="nc" id="L25">  public AbstractUserPlayer(SanguineModel model, boolean machine) {</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (model == null) {</span>
+<span class="nc" id="L27">      throw new IllegalArgumentException(&quot;Model cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L30">    this.model = model;</span>
+<span class="nc" id="L31">    this.machine = machine;</span>
+<span class="nc" id="L32">    this.listeners = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L33">  }</span>
+
+  @Override
+  public void move(int card, int row, int col) {
+<span class="nc bnc" id="L37" title="All 2 branches missed.">    if (isItMyTurn()) {</span>
+<span class="nc bnc" id="L38" title="All 2 branches missed.">      if (machine) {</span>
+<span class="nc" id="L39">        StrategicComputerPlayers maxRow = new MaximizeRowScore(this.model, this.getTeam());</span>
+<span class="nc" id="L40">        maxRow.makeMove();</span>
+<span class="nc" id="L41">      } else {</span>
+<span class="nc" id="L42">        model.move(card, row, col);</span>
+      }
+<span class="nc" id="L44">      listeners.getFirst().handleTeamChange();</span>
+    }
+<span class="nc" id="L46">  }</span>
+
+  @Override
+  public void passTurn() {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">    if (isItMyTurn()) {</span>
+<span class="nc" id="L51">      model.passTurn();</span>
+<span class="nc bnc" id="L52" title="All 2 branches missed.">      if (model.isGameOver()) {</span>
+        String message;
+<span class="nc" id="L54">        Team winner = model.findWinner();</span>
+
+<span class="nc bnc" id="L56" title="All 2 branches missed.">        if (winner == null) {</span>
+<span class="nc" id="L57">          message = &quot;Game ended in a tie.&quot;;</span>
+        } else {
+<span class="nc" id="L59">          message = winner + &quot; won with score of &quot; + model.getCurrentScore(winner);</span>
+        }
+
+<span class="nc" id="L62">        listeners.get(0).handleGameOver(winner, message);</span>
+<span class="nc" id="L63">        listeners.get(1).handleGameOver(winner, message);</span>
+      }
+<span class="nc" id="L65">      listeners.getFirst().handleTeamChange();</span>
+    }
+<span class="nc" id="L67">  }</span>
+
+  public boolean isItMyTurn() {
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    return getTeam() == model.getCurrentPlayer();</span>
+  }
+
+  @Override
+  public void subscribe(FeaturesListener listener) {
+<span class="nc" id="L75">    this.listeners.add(listener);</span>
+<span class="nc" id="L76">  }</span>
+
+  /**
+   * Factory method that allows subclasses to select the correct team
+   * so the above methods can work appropriately. Also acts as on observer
+   * for this plays team.
+   *
+   * @return the team of this player
+   */
+  public abstract Team getTeam();
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SanguineCardSectionPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.view</a> &gt; <span class="el_source">SanguineCardSectionPanel.java</span></div><h1>SanguineCardSectionPanel.java</h1><pre class="source lang-java linenums">package sanguine.view;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import javax.swing.JPanel;
+import sanguine.model.Card;
+import sanguine.model.Team;
+import sanguine.model.ViewModel;
+
+/**
+ * Represents the lower half of the frame, showing the cards in the hand of the current player.
+ */
+public class SanguineCardSectionPanel extends JPanel implements MainPanel {
+  private ViewModel model;
+  private final Team team;
+  private int previousCardIndex;
+
+  /**
+   * Constructs the drawing of the hand for the current player.
+   *
+   * @param model a read-only model to use the observers available to construct the panel
+   * @param team is the team of that current player
+   * @throws IllegalArgumentException hand is null
+   * @throws IllegalArgumentException team is null
+   */
+<span class="nc" id="L27">  public SanguineCardSectionPanel(ViewModel model, Team team) throws IllegalArgumentException {</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">    if (model == null) {</span>
+<span class="nc" id="L29">      throw new IllegalArgumentException(&quot;Model cannot be null.&quot;);</span>
+    }
+
+<span class="nc bnc" id="L32" title="All 2 branches missed.">    if (team == null) {</span>
+<span class="nc" id="L33">      throw new IllegalArgumentException(&quot;Team of the hand cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L36">    this.model = model;</span>
+<span class="nc" id="L37">    this.team = team;</span>
+<span class="nc" id="L38">    this.previousCardIndex = -1;</span>
+    List&lt;Card&gt; hand;
+
+<span class="nc bnc" id="L41" title="All 2 branches missed.">    if (this.team == Team.RED) {</span>
+<span class="nc" id="L42">      hand = model.getRedHand();</span>
+    } else {
+<span class="nc" id="L44">      hand = model.getBlueHand();</span>
+    }
+
+<span class="nc bnc" id="L47" title="All 2 branches missed.">    for (Card card : hand) {</span>
+<span class="nc" id="L48">      SanguineCardPanel cardPanel = new SanguineCardPanel(card);</span>
+<span class="nc" id="L49">      this.add(cardPanel);</span>
+<span class="nc" id="L50">    }</span>
+<span class="nc" id="L51">  }</span>
+
+  @Override
+  public void subscribe(FeaturesListener listener) throws IllegalArgumentException {
+<span class="nc bnc" id="L55" title="All 2 branches missed.">    if (listener == null) {</span>
+<span class="nc" id="L56">      throw new IllegalArgumentException(&quot;Listener cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L59">    this.highlightCard(listener);</span>
+<span class="nc" id="L60">  }</span>
+
+  @Override
+  public void refresh() {
+<span class="nc" id="L64">    this.removeAll();</span>
+<span class="nc" id="L65">    this.repaint();</span>
+<span class="nc" id="L66">    this.revalidate();</span>
+
+    List&lt;Card&gt; hand;
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (this.team == Team.RED) {</span>
+<span class="nc" id="L71">      hand = model.getRedHand();</span>
+    } else {
+<span class="nc" id="L73">      hand = model.getBlueHand();</span>
+    }
+
+<span class="nc bnc" id="L76" title="All 2 branches missed.">    for (Card card : hand) {</span>
+<span class="nc" id="L77">      SanguineCardPanel cardPanel = new SanguineCardPanel(card);</span>
+<span class="nc" id="L78">      this.add(cardPanel);</span>
+<span class="nc" id="L79">    }</span>
+<span class="nc" id="L80">  }</span>
+
+  /**
+   * Highlights a card that has been clicked on with the mouse, and
+   * calls the listener to handle the card click.
+   *
+   * @param listener is the FeaturesListener that calls it's method to handle a card click
+   * @throws IllegalArgumentException if the listener is null
+   */
+  private void highlightCard(FeaturesListener listener) throws IllegalArgumentException {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    if (listener == null) {</span>
+<span class="nc" id="L91">      throw new IllegalArgumentException(&quot;Listener cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L94">    this.addMouseListener(new MouseAdapter() {</span>
+      @Override
+      public void mouseClicked(MouseEvent e) {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">        if (SanguineCardSectionPanel.this.team != model.getCurrentPlayer()) {</span>
+<span class="nc" id="L98">          return;</span>
+        }
+
+        List&lt;Card&gt; hand;
+
+<span class="nc bnc" id="L103" title="All 2 branches missed.">        if (SanguineCardSectionPanel.this.team == Team.RED) {</span>
+<span class="nc" id="L104">          hand = model.getRedHand();</span>
+        } else {
+<span class="nc" id="L106">          hand = model.getBlueHand();</span>
+        }
+<span class="nc" id="L108">        int handSize = hand.size();</span>
+<span class="nc" id="L109">        double cardWidth = (double) getWidth() / handSize;</span>
+<span class="nc" id="L110">        int index = ((int) Math.ceil(e.getX() / cardWidth)) - 1;</span>
+
+<span class="nc" id="L112">        listener.handleCardClick(index, team);</span>
+<span class="nc" id="L113">        SanguineCardSectionPanel.this.highlighting(index);</span>
+<span class="nc" id="L114">      }</span>
+    });
+<span class="nc" id="L116">  }</span>
+
+  /**
+   * Highlights a card that has been clicked on with the mouse, and calls the listener
+   * to handle the card click. If a new card is selected, the highlight moves to the newly selected
+   * card. If the selected card is the same as the previous, highlight is removed.
+   *
+   * @param index is the index of the card component clicked in this panel
+   */
+  private void highlighting(int index) {
+<span class="nc" id="L126">    SanguineCardPanel selectedCard =</span>
+<span class="nc" id="L127">        (SanguineCardPanel) SanguineCardSectionPanel.this.getComponent(index);</span>
+
+<span class="nc bnc" id="L129" title="All 2 branches missed.">    if (previousCardIndex == -1) {</span>
+<span class="nc" id="L130">      selectedCard.highlight();</span>
+<span class="nc" id="L131">      previousCardIndex = index;</span>
+<span class="nc" id="L132">      return;</span>
+    }
+
+<span class="nc bnc" id="L135" title="All 2 branches missed.">    if (previousCardIndex == index) {</span>
+<span class="nc" id="L136">      selectedCard.removeHighlight();</span>
+<span class="nc" id="L137">      previousCardIndex = -1;</span>
+<span class="nc" id="L138">      return;</span>
+    }
+
+<span class="nc" id="L141">    SanguineCardPanel previousCard =</span>
+<span class="nc" id="L142">        (SanguineCardPanel) SanguineCardSectionPanel.this.getComponent(previousCardIndex);</span>
+
+<span class="nc" id="L144">    previousCard.removeHighlight();</span>
+<span class="nc" id="L145">    selectedCard.highlight();</span>
+<span class="nc" id="L146">    previousCardIndex = index;</span>
+<span class="nc" id="L147">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>
