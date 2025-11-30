@@ -79,23 +79,20 @@ public interface ReadonlySanguineModel {
    * Observer for the current players hand.
    *
    * @return the list of cards in the current players hand
-   * @throws IllegalStateException if the game is over
    */
-  List<Card> getCurrentHand() throws IllegalStateException;
+  List<Card> getCurrentHand();
 
   /**
    * Observer for the red players hand.
    *
    * @return the list of cards in the red players hand
-   * @throws IllegalStateException if the game is over
    */
-  List<Card> getRedHand() throws IllegalStateException;
+  List<Card> getRedHand();
 
   /**
    * Observer for the blue players hand.
    *
    * @return the list of cards in the blue players hand
-   * @throws IllegalStateException if the game is over
    */
-  List<Card> getBlueHand() throws IllegalStateException;
+  List<Card> getBlueHand();
 }

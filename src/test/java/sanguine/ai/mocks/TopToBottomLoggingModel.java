@@ -126,4 +126,14 @@ public class TopToBottomLoggingModel implements SanguineModel {
   public List<Card> getCurrentHand() throws IllegalStateException {
     return this.cards;
   }
+
+  @Override
+  public List<Card> getRedHand() {
+    return List.of();
+  }
+
+  @Override
+  public List<Card> getBlueHand() {
+    return List.of();
+  }
 }

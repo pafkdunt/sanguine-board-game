@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Sanguine.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine</a> &gt; <span class="el_source">Sanguine.java</span></div><h1>Sanguine.java</h1><pre class="source lang-java linenums">package sanguine;
+
+import sanguine.controller.BasicSanguineController;
+import sanguine.controller.SanguineController;
+import sanguine.model.BasicSanguineModel;
+import sanguine.model.Team;
+import sanguine.model.ViewModel;
+import sanguine.player.BluePlayer;
+import sanguine.player.RedPlayer;
+import sanguine.player.UserPlayer;
+import sanguine.view.FeaturesListener;
+import sanguine.view.SanguineFrameView;
+import sanguine.view.SanguineView;
+
+/**
+ * Sanguine class that is the actual game. Cannot be played with what is currently implemented.
+ */
+<span class="nc" id="L18">public class Sanguine {</span>
+
+  /**
+   * Main method that runs the game.
+   *
+   * @param args is the arguments taken into to this method (currently takes in the file name only)
+   */
+  public static void main(String[] args) {
+<span class="nc" id="L26">    String file = &quot;docs/exampleScreenshot.deck&quot;;</span>
+<span class="nc" id="L27">    BasicSanguineModel model =</span>
+        new BasicSanguineModel(2, 5, 7, file, file, false);
+
+
+<span class="nc" id="L31">    SanguineView viewRed = new SanguineFrameView(new ViewModel(model), Team.RED);</span>
+<span class="nc" id="L32">    SanguineView viewBlue = new SanguineFrameView(new ViewModel(model), Team.BLUE);</span>
+
+<span class="nc" id="L34">    UserPlayer redPlayer = new RedPlayer(model, false);</span>
+<span class="nc" id="L35">    UserPlayer bluePlayer = new BluePlayer(model, true);</span>
+
+<span class="nc" id="L37">    SanguineController controllerRed = new BasicSanguineController(viewRed, redPlayer);</span>
+<span class="nc" id="L38">    SanguineController controllerBlue = new BasicSanguineController(viewBlue, bluePlayer);</span>
+
+<span class="nc" id="L40">    controllerRed.playGame();</span>
+<span class="nc" id="L41">    controllerBlue.playGame();</span>
+
+<span class="nc" id="L43">    redPlayer.subscribe((FeaturesListener) controllerBlue);</span>
+<span class="nc" id="L44">    redPlayer.subscribe((FeaturesListener) controllerRed);</span>
+<span class="nc" id="L45">    bluePlayer.subscribe((FeaturesListener) controllerRed);</span>
+<span class="nc" id="L46">    bluePlayer.subscribe((FeaturesListener) controllerBlue);</span>
+<span class="nc" id="L47">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

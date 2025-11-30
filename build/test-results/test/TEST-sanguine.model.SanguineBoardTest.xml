@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sanguine.model.SanguineBoardTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2025-11-30T21:57:01.479Z" hostname="JUNGMIN-LAPTOP" time="0.003">
+  <properties/>
+  <testcase name="testInvalidPerformMoveOutOfBounds" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testGetCellNegativeCol" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testGetCellNegativeRow" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testGetCell" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testValidPerformMove" classname="sanguine.model.SanguineBoardTest" time="0.001"/>
+  <testcase name="testInvalidPerformMoveInsufficientCost" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testAffectCell" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testGetCellExceedCol" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testGetCellExceedRow" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <testcase name="testInvalidPerformMoveNotYourTeam" classname="sanguine.model.SanguineBoardTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

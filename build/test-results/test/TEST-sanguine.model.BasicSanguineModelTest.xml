@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sanguine.model.BasicSanguineModelTest" tests="32" skipped="0" failures="0" errors="0" timestamp="2025-11-30T21:57:01.424Z" hostname="JUNGMIN-LAPTOP" time="0.05">
+  <properties/>
+  <testcase name="testGetCurrentScoreNoMoves" classname="sanguine.model.BasicSanguineModelTest" time="0.009"/>
+  <testcase name="testMoveNegativeCol" classname="sanguine.model.BasicSanguineModelTest" time="0.002"/>
+  <testcase name="testMoveNegativeRow" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testBlueMoves" classname="sanguine.model.BasicSanguineModelTest" time="0.002"/>
+  <testcase name="testMoveTooLargeCard" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testFindWinnerGameIsOverTie" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetBlueScore" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testFindWinnerGameIsOverRedWins" classname="sanguine.model.BasicSanguineModelTest" time="0.002"/>
+  <testcase name="testRedPassTurn" classname="sanguine.model.BasicSanguineModelTest" time="0.002"/>
+  <testcase name="testMoveTooLargeCol" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testMoveTooLargeRow" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentScoreMovesLeadToNoPoints" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCell" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCols" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetRows" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testHandSizeTooLarge" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testPassTurnGameIsOver" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentHandBluePlaying" classname="sanguine.model.BasicSanguineModelTest" time="0.0"/>
+  <testcase name="testRedMoves" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentPlayer" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentPlayerGameIsOver" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentScoreBlueHasPoints" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testMoveNegativeCard" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testMoveGameIsOver" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetRedScore" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentScoreRedHasPoints" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testGetCurrentHandRedPlaying" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testValidConstruction" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testFindWinnerGameIsNotOver" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testBluePassTurn" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <testcase name="testFindWinnerGameIsOverBlueWins" classname="sanguine.model.BasicSanguineModelTest" time="0.002"/>
+  <testcase name="testPassTurnLeadsToGameOverAndIsGameOver" classname="sanguine.model.BasicSanguineModelTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

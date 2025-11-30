@@ -31,5 +31,18 @@ public interface FeaturesListener {
    */
   void handleKeyPressed(String key);
 
+  /**
+   * Handles when the turn changes due to making a move or passing.
+   * Shows a pop-up window for the player whose turn it became.
+   */
   void handleTeamChange();
+
+  /**
+   * Handles when the game is over by the turn being consecutively passed twice.
+   * Relays to the view to reflect this.
+   *
+   * @param winner the team of the winning player
+   * @param message the string containing the player who won and their score
+   */
+  void handleGameOver(Team winner, String message);
 }

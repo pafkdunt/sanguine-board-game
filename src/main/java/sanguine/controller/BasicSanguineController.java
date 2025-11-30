@@ -1,7 +1,7 @@
 package sanguine.controller;
 
-import sanguine.Player.UserPlayer;
 import sanguine.model.Team;
+import sanguine.player.UserPlayer;
 import sanguine.view.FeaturesListener;
 import sanguine.view.SanguineView;
 
@@ -14,16 +14,18 @@ public class BasicSanguineController implements SanguineController, FeaturesList
   private final UserPlayer player;
   private int row;
   private int col;
-  private SanguineView view;
+  private final SanguineView view;
 
   /**
    * Constructs this controller to facilitate a connection between the model and view. It
    * currently only supports the view.
    *
    * @param view is the view object that displays the game.
+   * @param player is the player object that plays game.
    * @throws IllegalArgumentException if the view is null
    */
-  public BasicSanguineController(SanguineView view, UserPlayer player) throws IllegalArgumentException {
+  public BasicSanguineController(SanguineView view, UserPlayer player)
+      throws IllegalArgumentException {
     if (view == null) {
       throw new IllegalArgumentException("View cannot be null");
     }
@@ -63,17 +65,22 @@ public class BasicSanguineController implements SanguineController, FeaturesList
   @Override
   public void handleKeyPressed(String key) {
     if (key.equals("ENTER")) {
-      if (row == -1 || col == -1 || cardIndex == -1) {
-        // change this to be a message box shown in the view
-        throw new IllegalArgumentException("Must select a cell and card to make a move");
+      try {
+        player.move(cardIndex, row, col);
+      } catch (IllegalArgumentException | IllegalStateException e) {
+        view.notifyError(e.getMessage());
       }
 
-      player.move(cardIndex, row, col);
       this.row = -1;
       this.col = -1;
       this.cardIndex = -1;
     } else if (key.equals("P")) {
-      player.passTurn();
+      try {
+        player.passTurn();
+      } catch (IllegalStateException e) {
+        view.notifyError(e.getMessage());
+      }
+
       this.row = -1;
       this.col = -1;
       this.cardIndex = -1;
@@ -82,6 +89,11 @@ public class BasicSanguineController implements SanguineController, FeaturesList
 
   @Override
   public void handleTeamChange() {
-    view.notifyPlayer();
+    view.notifyTurn();
+  }
+
+  @Override
+  public void handleGameOver(Team winner, String message) {
+    view.notifyGameOver(winner, message);
   }
 }

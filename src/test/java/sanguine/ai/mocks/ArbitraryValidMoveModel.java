@@ -102,4 +102,14 @@ public class ArbitraryValidMoveModel implements SanguineModel {
 
     return hand;
   }
+
+  @Override
+  public List<Card> getRedHand() {
+    return List.of();
+  }
+
+  @Override
+  public List<Card> getBlueHand() {
+    return List.of();
+  }
 }

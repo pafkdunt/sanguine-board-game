@@ -1,12 +1,14 @@
 package sanguine.view;
 
 import java.awt.Color;
+import java.awt.Dialog;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -19,13 +21,15 @@ import sanguine.model.ViewModel;
 public class SanguineFrameView extends JFrame implements SanguineView {
   private final SanguineBoardPanel board;
   private final SanguineCardSectionPanel cards;
-  private ViewModel viewModel;
+  private final ViewModel viewModel;
   private final Team team;
+
   /**
    * Constructs the playable JFrame based on a ViewModel that it
    * ses to observe the state of the game.
    *
    * @param model is the ViewModel that has observers to look at the game state
+   * @param team the team of this frame
    * @throws IllegalArgumentException if the model is null
    */
   public SanguineFrameView(ViewModel model, Team team) throws IllegalArgumentException {
@@ -86,14 +90,12 @@ public class SanguineFrameView extends JFrame implements SanguineView {
       public void keyReleased(KeyEvent e) {
         int keyCode = e.getKeyCode();
         if (keyCode == KeyEvent.VK_P) {
-          System.out.println("P was pressed");
           listener.handleKeyPressed("P");
           // refreshes to clear the highlighted parts of the game
           // if the player passes their turn
           board.refresh();
           cards.refresh();
         } else if (keyCode == KeyEvent.VK_ENTER) {
-          System.out.println("ENTER was pressed");
           listener.handleKeyPressed("ENTER");
           // refreshes to show the move the player made in this Frame
           board.refresh();
@@ -104,7 +106,7 @@ public class SanguineFrameView extends JFrame implements SanguineView {
   }
 
   @Override
-  public void notifyPlayer() {
+  public void notifyTurn() {
     if (viewModel.getCurrentPlayer() != team) {
       return;
     }
@@ -112,7 +114,44 @@ public class SanguineFrameView extends JFrame implements SanguineView {
     board.refresh();
     cards.refresh();
 
-    JOptionPane.showMessageDialog(this, "It's your turn!",
-        "Turn Change", JOptionPane.INFORMATION_MESSAGE);
+    JOptionPane pane = new JOptionPane("It's your turn!", JOptionPane.INFORMATION_MESSAGE,
+        JOptionPane.DEFAULT_OPTION);
+
+    JDialog dialog = pane.createDialog("Turn changed.");
+
+    dialog.setModalityType(Dialog.ModalityType.MODELESS);
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
+  }
+
+  @Override
+  public void notifyError(String message) {
+    board.refresh();
+    cards.refresh();
+
+    JOptionPane.showMessageDialog(this, message,
+        "Error", JOptionPane.ERROR_MESSAGE);
+  }
+
+  @Override
+  public void notifyGameOver(Team winner, String message) {
+    board.refresh();
+    cards.refresh();
+
+    JOptionPane pane = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE,
+        JOptionPane.DEFAULT_OPTION);
+
+    JDialog dialog;
+    if (winner == null) {
+      dialog = pane.createDialog("Tie");
+    } else if (winner == this.team) {
+      dialog = pane.createDialog("Victory!");
+    } else {
+      dialog = pane.createDialog("Loss");
+    }
+
+    dialog.setModalityType(Dialog.ModalityType.MODELESS);
+    dialog.setLocationRelativeTo(this);
+    dialog.setVisible(true);
   }
 }

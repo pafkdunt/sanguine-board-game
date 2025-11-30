@@ -71,4 +71,14 @@ public class FillInModel implements SanguineModel {
   public List<Card> getCurrentHand() throws IllegalStateException {
     return List.of();
   }
+
+  @Override
+  public List<Card> getRedHand() {
+    return List.of();
+  }
+
+  @Override
+  public List<Card> getBlueHand() {
+    return List.of();
+  }
 }

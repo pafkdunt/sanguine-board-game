@@ -5,13 +5,88 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1964ced-f441-4136-85f2-99c659fb2f83" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules/f25-hw07-groups-group-Jungmin_Rohan.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sanguine/TestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/sanguine/TestMain.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/executionHistory/executionHistory.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/8.14/fileHashes/resourceHashesCache.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/checkstyle-idea.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/AbstractUserPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/AbstractUserPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/BluePlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/BluePlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/RedPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/RedPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/UserPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/Player/UserPlayer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/Sanguine.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/Sanguine.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/ai/FillFirst.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/ai/FillFirst.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/ai/MaximizeRowScore.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/ai/MaximizeRowScore.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/ai/StrategicComputerPlayers.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/ai/StrategicComputerPlayers.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/controller/BasicSanguineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/controller/BasicSanguineController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/controller/SanguineController.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/controller/SanguineController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/BasicSanguineModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/BasicSanguineModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Card.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Card.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Cell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/DeckCreator.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/DeckCreator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/ReadonlySanguineModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/ReadonlySanguineModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineBoard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineBoard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineCard.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineCard.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineCell.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/SanguineModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Team.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/Team.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/ViewModel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/model/ViewModel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/FeaturesListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/FeaturesListener.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/MainPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/MainPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/Message.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineBoardPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineBoardPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineBoardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineBoardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCardPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCardPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCardSectionPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCardSectionPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCardSectionPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCardSectionPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCellPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineCellPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineFrameView$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineFrameView$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineFrameView$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineFrameView$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineFrameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineFrameView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineInfluenceGridPanel$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineInfluenceGridPanel$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineInfluenceGridPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineInfluenceGridPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineScorePanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineScorePanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineView.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SanguineView.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SubPanel.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/java/main/sanguine/view/SubPanel.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/SanguineCardSectionPanel$1.class.uniqueId2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/SanguineCardSectionPanel.class.uniqueId1" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/SanguineFrameView$1.class.uniqueId4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/SanguineFrameView$2.class.uniqueId3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/compileTransaction/stash-dir/SanguineFrameView.class.uniqueId0" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" beforeDir="false" afterPath="$PROJECT_DIR$/build/tmp/compileJava/previous-compilation-data.bin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/Player/AbstractUserPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/player/AbstractUserPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/Player/BluePlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/player/BluePlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/Player/RedPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/player/RedPlayer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/Player/UserPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/player/UserPlayer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/Sanguine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/Sanguine.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/controller/BasicSanguineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/controller/BasicSanguineController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/controller/SanguineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/controller/SanguineController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/model/BasicSanguineModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/model/BasicSanguineModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/model/ReadonlySanguineModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/model/ReadonlySanguineModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/model/SanguineModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/model/SanguineModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/model/ViewModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/model/ViewModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/view/FeaturesListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/view/FeaturesListener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/view/MainPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/view/MainPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/view/Message.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/view/SanguineBoardPanel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/view/SanguineBoardPanel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/view/SanguineFrameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/view/SanguineFrameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/sanguine/view/SanguineView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/sanguine/view/SanguineView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/ArbitraryMoveWinsRowModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/ArbitraryMoveWinsRowModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/ArbitraryValidMoveModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/ArbitraryValidMoveModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/FillInModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/FillInModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/FirstMoveValidModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/FirstMoveValidModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/FirstMoveWinsRowModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/FirstMoveWinsRowModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/NoMovesThatWinRowsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/NoMovesThatWinRowsModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/NoValidMoveModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/NoValidMoveModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/TopToBottomLoggingModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/TopToBottomLoggingModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/TopToBottomLoggingRowsModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/sanguine/ai/mocks/TopToBottomLoggingRowsModel.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,9 +125,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="364CETUWs5yoZi0JgYB6ksKI11A" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -65,7 +140,8 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "jungminMain",
+    "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -102,8 +178,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
-        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.27397.103" />
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.25557.131" />
       </set>
     </attachedChunks>
   </component>

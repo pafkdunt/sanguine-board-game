@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SanguineCellPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.view</a> &gt; <span class="el_source">SanguineCellPanel.java</span></div><h1>SanguineCellPanel.java</h1><pre class="source lang-java linenums">package sanguine.view;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Shape;
+import java.awt.geom.Ellipse2D;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import sanguine.model.Cell;
+import sanguine.model.Team;
+
+/**
+ * Draws the individual cells of the board of the game.
+ * This is a subcomponent of the SanguineBoardPanel.
+ */
+public class SanguineCellPanel extends JPanel implements SubPanel {
+  private final Cell cell;
+  private boolean highlighted;
+
+  /**
+   * Constructs the image of the cell that is being drawn based on an inputted Cell object.
+   *
+   * @param cell is the inputted Cell object
+   */
+<span class="nc" id="L29">  public SanguineCellPanel(Cell cell) {</span>
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    if (cell == null) {</span>
+<span class="nc" id="L31">      throw new IllegalArgumentException(&quot;Cell cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L34">    this.cell = cell;</span>
+<span class="nc" id="L35">    this.highlighted = false;</span>
+<span class="nc" id="L36">    this.setBorder(BorderFactory.createLineBorder(Color.black));</span>
+<span class="nc" id="L37">    this.setLayout(new BorderLayout());</span>
+
+<span class="nc bnc" id="L39" title="All 2 branches missed.">    if (this.cell.getValue() &gt; 0) {</span>
+<span class="nc" id="L40">      JLabel value = new JLabel(this.cell.getValue() + &quot;&quot;);</span>
+<span class="nc" id="L41">      value.setVerticalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L42">      value.setHorizontalAlignment(JLabel.CENTER);</span>
+<span class="nc" id="L43">      value.setFont(new Font(&quot;SansSerif&quot;, Font.BOLD, 40));</span>
+<span class="nc" id="L44">      this.add(value, BorderLayout.CENTER);</span>
+    }
+<span class="nc" id="L46">  }</span>
+
+  @Override
+  protected void paintComponent(Graphics g) {
+<span class="nc" id="L50">    super.paintComponent(g);</span>
+<span class="nc" id="L51">    Graphics2D g2d = (Graphics2D) g.create();</span>
+
+<span class="nc" id="L53">    g2d.setColor(new Color(120, 120, 120));</span>
+<span class="nc" id="L54">    g2d.fillRect(0, 0, getWidth(), getHeight());</span>
+
+    Color color;
+
+<span class="nc bnc" id="L58" title="All 2 branches missed.">    if (cell.getTeam() == Team.BLUE) {</span>
+<span class="nc" id="L59">      color = new Color(90, 150, 210);</span>
+    } else {
+<span class="nc" id="L61">      color = new Color(200, 120, 120);</span>
+    }
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">    if (cell.getValue() &gt; 0) {</span>
+<span class="nc" id="L65">      g2d.setColor(color);</span>
+<span class="nc" id="L66">      g2d.fillRect(0, 0, getWidth(), getHeight());</span>
+<span class="nc" id="L67">      return;</span>
+    }
+
+<span class="nc bnc" id="L70" title="All 2 branches missed.">    if (highlighted) {</span>
+<span class="nc" id="L71">      g2d.setColor(Color.CYAN);</span>
+<span class="nc" id="L72">      g2d.fillRect(0, 0, getWidth(), getHeight());</span>
+    }
+
+<span class="nc bnc" id="L75" title="All 4 branches missed.">    switch (cell.getPawns()) {</span>
+      case 1:
+<span class="nc" id="L77">        drawOneCircle(g2d, color);</span>
+<span class="nc" id="L78">        break;</span>
+      case 2:
+<span class="nc" id="L80">        drawTwoCircle(g2d, color);</span>
+<span class="nc" id="L81">        break;</span>
+      case 3:
+<span class="nc" id="L83">        drawThreeCircle(g2d, color);</span>
+<span class="nc" id="L84">        break;</span>
+      default:
+        break;
+    }
+<span class="nc" id="L88">  }</span>
+
+  @Override
+  public void highlight() {
+<span class="nc bnc" id="L92" title="All 2 branches missed.">    highlighted = !highlighted;</span>
+<span class="nc" id="L93">    repaint();</span>
+<span class="nc" id="L94">  }</span>
+
+  @Override
+  public void removeHighlight() {
+<span class="nc" id="L98">    highlighted = false;</span>
+<span class="nc" id="L99">    repaint();</span>
+<span class="nc" id="L100">  }</span>
+
+  /**
+   * Draws one circle to show there is one pawn.
+   *
+   * @param g2d   the graphics object that does the drawing
+   * @param color is the color of the circles that are being draw which
+   *              is depending on the player that owns the Cell object
+   */
+  private void drawOneCircle(Graphics2D g2d, Color color) {
+<span class="nc" id="L110">    double diameter = (double) getWidth() / 10;</span>
+<span class="nc" id="L111">    Shape circle = new Ellipse2D.Double((double) getWidth() / 2 - diameter / 2,</span>
+<span class="nc" id="L112">        (double) getHeight() / 2 - diameter / 2, diameter, diameter);</span>
+<span class="nc" id="L113">    g2d.setColor(color);</span>
+<span class="nc" id="L114">    g2d.fill(circle);</span>
+<span class="nc" id="L115">  }</span>
+
+  /**
+   * Draws two circles to show there are two pawns.
+   *
+   * @param g2d   the graphics object that does the drawing
+   * @param color is the color of the circles that are being draw which
+   *              is depending on the player that owns the Cell object
+   */
+  private void drawTwoCircle(Graphics2D g2d, Color color) {
+<span class="nc" id="L125">    double diameter = (double) getWidth() / 10;</span>
+<span class="nc" id="L126">    Shape circle1 = new Ellipse2D.Double((double) getWidth() / 2 - diameter * 1.5,</span>
+<span class="nc" id="L127">        (double) getHeight() / 2 - diameter / 2, diameter, diameter);</span>
+<span class="nc" id="L128">    Shape circle2 = new Ellipse2D.Double((double) getWidth() / 2 + diameter / 2,</span>
+<span class="nc" id="L129">        (double) getHeight() / 2 - diameter / 2, diameter, diameter);</span>
+<span class="nc" id="L130">    g2d.setColor(color);</span>
+<span class="nc" id="L131">    g2d.fill(circle1);</span>
+<span class="nc" id="L132">    g2d.fill(circle2);</span>
+<span class="nc" id="L133">  }</span>
+
+  /**
+   * Draws three circles to show there are three pawns.
+   *
+   * @param g2d   the graphics object that does the drawing
+   * @param color is the color of the circles that are being draw which
+   *              is depending on the player that owns the Cell object
+   */
+  private void drawThreeCircle(Graphics2D g2d, Color color) {
+<span class="nc" id="L143">    double diameter = (double) getWidth() / 10;</span>
+<span class="nc" id="L144">    Shape circle1 = new Ellipse2D.Double((double) getWidth() / 2 - diameter * 1.5,</span>
+<span class="nc" id="L145">        (double) getHeight() / 2 + diameter / 2, diameter, diameter);</span>
+<span class="nc" id="L146">    Shape circle2 = new Ellipse2D.Double((double) getWidth() / 2 + diameter / 2,</span>
+<span class="nc" id="L147">        (double) getHeight() / 2 + diameter / 2, diameter, diameter);</span>
+<span class="nc" id="L148">    Shape circle3 = new Ellipse2D.Double((double) getWidth() / 2 - diameter / 2,</span>
+<span class="nc" id="L149">        (double) getHeight() / 2 - diameter * 1.5, diameter, diameter);</span>
+<span class="nc" id="L150">    g2d.setColor(color);</span>
+<span class="nc" id="L151">    g2d.fill(circle1);</span>
+<span class="nc" id="L152">    g2d.fill(circle2);</span>
+<span class="nc" id="L153">    g2d.fill(circle3);</span>
+<span class="nc" id="L154">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

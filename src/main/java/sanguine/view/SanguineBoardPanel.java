@@ -72,7 +72,6 @@ public class SanguineBoardPanel extends JPanel implements MainPanel {
 
   @Override
   public void refresh() {
-    System.out.println("Refreshing board");
     this.removeAll();
     this.repaint();
     this.revalidate();

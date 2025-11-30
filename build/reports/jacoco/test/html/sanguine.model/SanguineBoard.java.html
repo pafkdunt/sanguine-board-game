@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SanguineBoard.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.model</a> &gt; <span class="el_source">SanguineBoard.java</span></div><h1>SanguineBoard.java</h1><pre class="source lang-java linenums">package sanguine.model;
+
+
+/**
+ * Representation of the game board.
+ */
+public class SanguineBoard implements Board {
+  private final Cell[][] board;
+  private final int rows;
+  private final int cols;
+
+  /**
+   * Constructor for a Board object. Takes in the number of rows and columns for the board.
+   *
+   * @param rows the integer number of rows
+   * @param cols the integer number of columns
+   */
+<span class="fc" id="L18">  public SanguineBoard(int rows, int cols) {</span>
+<span class="fc" id="L19">    this.board = new SanguineCell[rows][cols];</span>
+<span class="fc" id="L20">    this.rows = rows;</span>
+<span class="fc" id="L21">    this.cols = cols;</span>
+
+
+    // initializes board fields to empty cells
+<span class="fc bfc" id="L25" title="All 2 branches covered.">    for (int row = 0; row &lt; rows; row++) {</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">      for (int col = 0; col &lt; cols; col++) {</span>
+<span class="fc" id="L27">        board[row][col] = new SanguineCell(0, null);</span>
+      }
+    }
+
+
+    // adds 1 pawn to the left column and right colum of the board
+    // left side is RED, right side is BLUE
+<span class="fc bfc" id="L34" title="All 2 branches covered.">    for (int row = 0; row &lt; rows; row++) {</span>
+<span class="fc" id="L35">      board[row][0].addPawn();</span>
+<span class="fc" id="L36">      board[row][0].convertTeam(Team.RED);</span>
+<span class="fc" id="L37">      board[row][cols - 1].addPawn();</span>
+<span class="fc" id="L38">      board[row][cols - 1].convertTeam(Team.BLUE);</span>
+    }
+<span class="fc" id="L40">  }</span>
+
+
+  @Override
+  public void performMove(Card card, int row, int col) throws IllegalArgumentException {
+<span class="pc bpc" id="L45" title="1 of 2 branches missed.">    if (card == null) {</span>
+<span class="nc" id="L46">      throw new IllegalArgumentException(&quot;Card cannot be null.&quot;);</span>
+    }
+
+<span class="pc bpc" id="L49" title="3 of 8 branches missed.">    if (row &lt; 0 || row &gt;= rows || col &lt; 0 || col &gt;= cols) {</span>
+<span class="fc" id="L50">      throw new IllegalArgumentException(&quot;Out of bounds. Choose a valid cell to place a card.&quot;);</span>
+    }
+
+    // places the actual card
+<span class="fc" id="L54">    board[row][col].placeCard(card);</span>
+
+    // affects the cells based on influence gird of the card
+<span class="fc bfc" id="L57" title="All 2 branches covered.">    for (int rowIndex = 0; rowIndex &lt; 5; rowIndex++) {</span>
+<span class="fc bfc" id="L58" title="All 2 branches covered.">      for (int colIndex = 0; colIndex &lt; 5; colIndex++) {</span>
+<span class="fc bfc" id="L59" title="All 2 branches covered.">        if (card.grid()[rowIndex][colIndex]) {</span>
+<span class="fc" id="L60">          affectCell(row + (rowIndex - 2), col + (colIndex - 2), card.team());</span>
+        }
+      }
+    }
+<span class="fc" id="L64">  }</span>
+
+
+  @Override
+  public void affectCell(int row, int col, Team affectingTeam) throws IllegalArgumentException {
+<span class="pc bpc" id="L69" title="1 of 2 branches missed.">    if (affectingTeam == null) {</span>
+<span class="nc" id="L70">      throw new IllegalArgumentException(&quot;The affecting team cannot be null.&quot;);</span>
+    }
+
+<span class="pc bpc" id="L73" title="1 of 8 branches missed.">    if (row &lt; 0 || row &gt;= rows || col &lt; 0 || col &gt;= cols) {</span>
+<span class="fc" id="L74">      return;</span>
+    }
+
+<span class="fc" id="L77">    Cell cell = board[row][col];</span>
+
+    // if cell not a card, exit
+<span class="pc bpc" id="L80" title="1 of 2 branches missed.">    if (cell.getValue() &gt; 0) {</span>
+<span class="nc" id="L81">      return;</span>
+    }
+
+    // same team so add pawn
+<span class="fc bfc" id="L85" title="All 2 branches covered.">    if (cell.getTeam() == affectingTeam) {</span>
+<span class="fc" id="L86">      cell.addPawn();</span>
+<span class="fc bfc" id="L87" title="All 2 branches covered.">    } else if (cell.getTeam() == null) { // empty/null cell so make cell</span>
+      // part of the affectingTeam and add a pawn
+<span class="fc" id="L89">      cell.convertTeam(affectingTeam);</span>
+<span class="fc" id="L90">      cell.addPawn();</span>
+    } else { // different team so make cell part of the affectingTeam
+<span class="fc" id="L92">      cell.convertTeam(affectingTeam);</span>
+    }
+<span class="fc" id="L94">  }</span>
+
+  @Override
+  public Cell getCell(int row, int col) throws IllegalArgumentException {
+<span class="fc bfc" id="L98" title="All 8 branches covered.">    if (row &lt; 0 || row &gt; this.rows - 1 || col &lt; 0 || col &gt; this.cols - 1) {</span>
+<span class="fc" id="L99">      throw new IllegalArgumentException(&quot;Given an invalid row or column. Cannot get this cell.&quot;);</span>
+    }
+
+<span class="fc" id="L102">    return this.board[row][col];</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

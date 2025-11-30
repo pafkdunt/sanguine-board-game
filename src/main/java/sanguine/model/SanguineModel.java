@@ -1,8 +1,5 @@
 package sanguine.model;
 
-import java.util.List;
-import sanguine.view.FeaturesListener;
-
 /**
  * Represents the model section of the game Sanguine
  * in a Model-View-Controller design.

@@ -6,5 +6,9 @@ package sanguine.controller;
  */
 public interface SanguineController {
 
+  /**
+   * Starts playing the game Sanguine.
+   * Displays the board and the hand for the player to interact with.
+   */
   void playGame();
 }

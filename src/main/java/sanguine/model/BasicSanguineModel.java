@@ -3,7 +3,6 @@ package sanguine.model;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import sanguine.view.FeaturesListener;
 
 /**
  * Class representing a basic model of the game Sanguine.
@@ -86,7 +85,8 @@ public class BasicSanguineModel implements SanguineModel {
     }
 
     if (row < 0 || row > this.rows - 1 || col < 0 || col > this.cols - 1) {
-      throw new IllegalArgumentException("Invalid row or column. Cannot make this move.");
+      throw new IllegalArgumentException(
+          "Invalid cell selected. Must choose a valid cell for a move.");
     }
 
     // aliases to make code simpler
@@ -102,7 +102,8 @@ public class BasicSanguineModel implements SanguineModel {
     }
 
     if (card < 0 || card > hand.size() - 1) {
-      throw new IllegalArgumentException("Invalid card. Must choose a card in the hand.");
+      throw new IllegalArgumentException(
+          "Invalid card selected. Must choose a valid card in the hand.");
     }
 
     this.board.performMove(hand.get(card), row, col);
@@ -213,12 +214,12 @@ public class BasicSanguineModel implements SanguineModel {
   }
 
   @Override
-  public List<Card> getRedHand() throws IllegalStateException {
+  public List<Card> getRedHand() {
     return new ArrayList<>(redHand);
   }
 
   @Override
-  public List<Card> getBlueHand() throws IllegalStateException {
+  public List<Card> getBlueHand() {
     return new ArrayList<>(blueHand);
   }
 

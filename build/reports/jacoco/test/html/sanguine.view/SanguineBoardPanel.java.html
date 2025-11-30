@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SanguineBoardPanel.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">f25-hw07-groups-group-Jungmin_Rohan</a> &gt; <a href="index.source.html" class="el_package">sanguine.view</a> &gt; <span class="el_source">SanguineBoardPanel.java</span></div><h1>SanguineBoardPanel.java</h1><pre class="source lang-java linenums">package sanguine.view;
+
+import java.awt.Color;
+import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
+import sanguine.model.Cell;
+import sanguine.model.ViewModel;
+
+/**
+ * Represents the upper half of the frame, showing the board of the game and
+ * the associated row scores for each player.
+ */
+public class SanguineBoardPanel extends JPanel implements MainPanel {
+  private final ViewModel model;
+  private int previousSelection;
+
+  /**
+   * Constructs the drawing of the board panel which has the board and row scores of the game.
+   *
+   * @param model a read-only model to use the observers available to construct the panel
+   * @throws IllegalArgumentException if the model is null
+   */
+<span class="nc" id="L25">  public SanguineBoardPanel(ViewModel model) throws IllegalArgumentException {</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">    if (model == null) {</span>
+<span class="nc" id="L27">      throw new IllegalArgumentException(&quot;Model cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L30">    this.model = model;</span>
+<span class="nc" id="L31">    this.previousSelection = -1;</span>
+<span class="nc" id="L32">    this.setLayout(new GridLayout(model.getRows(), model.getCols() + 2));</span>
+
+<span class="nc" id="L34">    this.setup();</span>
+<span class="nc" id="L35">  }</span>
+
+  /**
+   * Setup method that is called in the constructor to create the panel.
+   */
+  private void setup() {
+<span class="nc bnc" id="L41" title="All 2 branches missed.">    for (int row = 0; row &lt; model.getRows(); row++) {</span>
+<span class="nc" id="L42">      boolean redWinning = false;</span>
+<span class="nc" id="L43">      boolean blueWinning = false;</span>
+
+<span class="nc bnc" id="L45" title="All 2 branches missed.">      if (model.getRedScore()[row] &gt; model.getBlueScore()[row]) {</span>
+<span class="nc" id="L46">        redWinning = true;</span>
+<span class="nc bnc" id="L47" title="All 2 branches missed.">      } else if (model.getBlueScore()[row] &gt; model.getRedScore()[row]) {</span>
+<span class="nc" id="L48">        blueWinning = true;</span>
+      }
+
+<span class="nc" id="L51">      this.add(new SanguineScorePanel(model.getRedScore()[row],</span>
+          redWinning, new Color(200, 120, 120)));
+
+<span class="nc bnc" id="L54" title="All 2 branches missed.">      for (int col = 0; col &lt; model.getCols(); col++) {</span>
+<span class="nc" id="L55">        Cell cell = model.getCell(row, col);</span>
+<span class="nc" id="L56">        this.add(new SanguineCellPanel(cell));</span>
+      }
+
+<span class="nc" id="L59">      this.add(new SanguineScorePanel(model.getBlueScore()[row],</span>
+          blueWinning, new Color(90, 150, 210)));
+    }
+<span class="nc" id="L62">  }</span>
+
+  @Override
+  public void subscribe(FeaturesListener listener) throws IllegalArgumentException {
+<span class="nc bnc" id="L66" title="All 2 branches missed.">    if (listener == null) {</span>
+<span class="nc" id="L67">      throw new IllegalArgumentException(&quot;Listener cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L70">    this.highlightCell(listener);</span>
+<span class="nc" id="L71">  }</span>
+
+  @Override
+  public void refresh() {
+<span class="nc" id="L75">    System.out.println(&quot;Refreshing board&quot;);</span>
+<span class="nc" id="L76">    this.removeAll();</span>
+<span class="nc" id="L77">    this.repaint();</span>
+<span class="nc" id="L78">    this.revalidate();</span>
+<span class="nc" id="L79">    this.setup();</span>
+<span class="nc" id="L80">  }</span>
+
+  /**
+   * Highlights a cell that has been clicked on with the mouse, and
+   * calls the listener to handle the cell click.
+   *
+   * @param listener is the FeaturesListener that calls it's method to handle a cell click
+   * @throws IllegalArgumentException if the listener is null
+   */
+  private void highlightCell(FeaturesListener listener) throws IllegalArgumentException {
+<span class="nc bnc" id="L90" title="All 2 branches missed.">    if (listener == null) {</span>
+<span class="nc" id="L91">      throw new IllegalArgumentException(&quot;Listener cannot be null.&quot;);</span>
+    }
+
+<span class="nc" id="L94">    this.addMouseListener(new MouseAdapter() {</span>
+      @Override
+      public void mouseClicked(MouseEvent e) {
+<span class="nc" id="L97">        int cols = model.getCols();</span>
+<span class="nc" id="L98">        double colWidth = (double) getWidth() / (cols + 2);</span>
+<span class="nc" id="L99">        int colIndex = (int) Math.ceil(e.getX() / colWidth);</span>
+
+<span class="nc bnc" id="L101" title="All 4 branches missed.">        if (colIndex &lt; 2 || colIndex &gt; cols + 1) {</span>
+<span class="nc" id="L102">          return;</span>
+        }
+
+<span class="nc" id="L105">        int rows = model.getRows();</span>
+<span class="nc" id="L106">        double rowHeight = (double) getHeight() / rows;</span>
+<span class="nc" id="L107">        int rowIndex = (int) Math.ceil(e.getY() / rowHeight);</span>
+
+<span class="nc" id="L109">        listener.handleCellClick(rowIndex - 1, colIndex - 2);</span>
+
+<span class="nc" id="L111">        int panelCols = model.getCols() + 2;</span>
+<span class="nc" id="L112">        double colWidthHighlight = (double) getWidth() / panelCols;</span>
+<span class="nc" id="L113">        int colIndexHighlight = (int) Math.ceil(e.getX() / colWidthHighlight);</span>
+<span class="nc" id="L114">        SanguineBoardPanel.this.highlighting(colIndexHighlight, rowIndex, panelCols);</span>
+<span class="nc" id="L115">      }</span>
+    });
+<span class="nc" id="L117">  }</span>
+
+  /**
+   * Highlights the selected cell based on the column and row inputs.
+   * Deselects previously highlighted cell if the new selected cell is different.
+   * If the previously highlighted cell is the same as the new selected, the highlight is removed.
+   *
+   * @param colIndexHighlighting is the column index, relative to the GridLayout of the Board
+   *                             panel and not the actual board dimensions of the game
+   * @param rowIndexHighlighting is the row index, relative to the GridLayout of the Board
+   *                             panel and not the actual board dimensions of the game
+   * @param panelCols            the number of columns in the panel based on the GridLayout
+   */
+  private void highlighting(int colIndexHighlighting, int rowIndexHighlighting, int panelCols) {
+<span class="nc" id="L131">    int cmpntIndex = panelCols * (rowIndexHighlighting - 1) + colIndexHighlighting - 1;</span>
+
+<span class="nc bnc" id="L133" title="All 4 branches missed.">    if (cmpntIndex % panelCols == 0 || cmpntIndex % panelCols == panelCols - 1) {</span>
+<span class="nc" id="L134">      return;</span>
+    }
+
+<span class="nc" id="L137">    SanguineCellPanel selectedCell =</span>
+<span class="nc" id="L138">        (SanguineCellPanel) SanguineBoardPanel.this.getComponent(cmpntIndex);</span>
+
+    // no previously selected cell
+<span class="nc bnc" id="L141" title="All 2 branches missed.">    if (previousSelection == -1) {</span>
+<span class="nc" id="L142">      selectedCell.highlight();</span>
+<span class="nc" id="L143">      previousSelection = cmpntIndex;</span>
+<span class="nc" id="L144">      return;</span>
+    }
+
+    // current selected cell is the same as previous selected (remove the highlight)
+<span class="nc bnc" id="L148" title="All 2 branches missed.">    if (previousSelection == cmpntIndex) {</span>
+<span class="nc" id="L149">      selectedCell.removeHighlight();</span>
+<span class="nc" id="L150">      previousSelection = -1;</span>
+<span class="nc" id="L151">      return;</span>
+    }
+
+    // deselect previous cell and selected new one
+<span class="nc" id="L155">    SanguineCellPanel previousCell =</span>
+<span class="nc" id="L156">        (SanguineCellPanel) SanguineBoardPanel.this.getComponent(previousSelection);</span>
+
+<span class="nc" id="L158">    previousCell.removeHighlight();</span>
+<span class="nc" id="L159">    selectedCell.highlight();</span>
+<span class="nc" id="L160">    previousSelection = cmpntIndex;</span>
+<span class="nc" id="L161">  }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.13.202504020838</span></div></body></html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="sanguine.model.SanguineCellTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2025-11-30T21:57:01.491Z" hostname="JUNGMIN-LAPTOP" time="0.003">
+  <properties/>
+  <testcase name="testAddPawnSomePawns" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testPlaceCardSuccessfully" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testConvertTeamRedToBlue" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testAddPawnNoPawns" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testConvertTeamBlueToRed" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testConvertTeamEmptyToRed" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testAddPawnAtMaxPawns" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testAddPawnToGetToMaxPawns" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testPlaceCardInsufficientPawns" classname="sanguine.model.SanguineCellTest" time="0.001"/>
+  <testcase name="testPlaceCardWrongTeam" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <testcase name="testConvertTeamEmptyToBlue" classname="sanguine.model.SanguineCellTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
