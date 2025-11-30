@@ -13,7 +13,7 @@ public interface MainPanel {
    * @param listener is the listener that acts based on input
    * @throws IllegalArgumentException if the listener is null
    */
-  void subscribe(FeaturesListener listener) throws IllegalArgumentException;
+  void subscribe(PlayerActionListener listener) throws IllegalArgumentException;
 
   /**
    * Repaints the panel to reflect the changes made to the state of the game.

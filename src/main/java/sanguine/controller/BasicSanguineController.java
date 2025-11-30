@@ -2,14 +2,16 @@ package sanguine.controller;
 
 import sanguine.model.Team;
 import sanguine.player.UserPlayer;
-import sanguine.view.FeaturesListener;
+import sanguine.view.ModelStatusListener;
+import sanguine.view.PlayerActionListener;
 import sanguine.view.SanguineView;
 
 /**
  * Class that facilitate the connection between the model and view components so the Sanguine game
  * is playable.
  */
-public class BasicSanguineController implements SanguineController, FeaturesListener {
+public class BasicSanguineController implements SanguineController, PlayerActionListener,
+    ModelStatusListener {
   private int cardIndex;
   private final UserPlayer player;
   private int row;

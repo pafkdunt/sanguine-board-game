@@ -8,7 +8,7 @@ import sanguine.model.ViewModel;
 import sanguine.player.BluePlayer;
 import sanguine.player.RedPlayer;
 import sanguine.player.UserPlayer;
-import sanguine.view.FeaturesListener;
+import sanguine.view.ModelStatusListener;
 import sanguine.view.SanguineFrameView;
 import sanguine.view.SanguineView;
 
@@ -25,7 +25,7 @@ public class Sanguine {
   public static void main(String[] args) {
     String file = "docs/exampleScreenshot.deck";
     BasicSanguineModel model =
-        new BasicSanguineModel(2, 5, 7, file, file, false);
+        new BasicSanguineModel(3, 5, 7, file, file, false);
 
 
     SanguineView viewRed = new SanguineFrameView(new ViewModel(model), Team.RED);
@@ -40,9 +40,9 @@ public class Sanguine {
     controllerRed.playGame();
     controllerBlue.playGame();
 
-    redPlayer.subscribe((FeaturesListener) controllerBlue);
-    redPlayer.subscribe((FeaturesListener) controllerRed);
-    bluePlayer.subscribe((FeaturesListener) controllerRed);
-    bluePlayer.subscribe((FeaturesListener) controllerBlue);
+    redPlayer.subscribe((ModelStatusListener) controllerBlue);
+    redPlayer.subscribe((ModelStatusListener) controllerRed);
+    bluePlayer.subscribe((ModelStatusListener) controllerRed);
+    bluePlayer.subscribe((ModelStatusListener) controllerBlue);
   }
 }

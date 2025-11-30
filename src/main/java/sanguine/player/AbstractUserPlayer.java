@@ -6,7 +6,7 @@ import sanguine.ai.MaximizeRowScore;
 import sanguine.ai.StrategicComputerPlayers;
 import sanguine.model.SanguineModel;
 import sanguine.model.Team;
-import sanguine.view.FeaturesListener;
+import sanguine.view.ModelStatusListener;
 
 /**
  * Abstract class implements functionality of the Player
@@ -14,7 +14,7 @@ import sanguine.view.FeaturesListener;
  */
 public abstract class AbstractUserPlayer implements UserPlayer {
   private final SanguineModel model;
-  private final List<FeaturesListener> listeners;
+  private final List<ModelStatusListener> modelStatusListeners;
   private final boolean machine;
 
   /**
@@ -29,7 +29,7 @@ public abstract class AbstractUserPlayer implements UserPlayer {
 
     this.model = model;
     this.machine = machine;
-    this.listeners = new ArrayList<>();
+    this.modelStatusListeners = new ArrayList<>();
   }
 
   @Override
@@ -41,7 +41,7 @@ public abstract class AbstractUserPlayer implements UserPlayer {
       } else {
         model.move(card, row, col);
       }
-      listeners.getFirst().handleTeamChange();
+      modelStatusListeners.getFirst().handleTeamChange();
     }
   }
 
@@ -59,10 +59,10 @@ public abstract class AbstractUserPlayer implements UserPlayer {
           message = winner + " won with score of " + model.getCurrentScore(winner);
         }
 
-        listeners.get(0).handleGameOver(winner, message);
-        listeners.get(1).handleGameOver(winner, message);
+        modelStatusListeners.get(0).handleGameOver(winner, message);
+        modelStatusListeners.get(1).handleGameOver(winner, message);
       }
-      listeners.getFirst().handleTeamChange();
+      modelStatusListeners.getFirst().handleTeamChange();
     }
   }
 
@@ -71,8 +71,12 @@ public abstract class AbstractUserPlayer implements UserPlayer {
   }
 
   @Override
-  public void subscribe(FeaturesListener listener) {
-    this.listeners.add(listener);
+  public void subscribe(ModelStatusListener listener) throws IllegalArgumentException {
+    if (listener == null) {
+      throw new IllegalArgumentException("Listener cannot be null.");
+    }
+
+    this.modelStatusListeners.add(listener);
   }
 
   /**

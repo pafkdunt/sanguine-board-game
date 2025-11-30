@@ -12,7 +12,7 @@ import sanguine.model.ViewModel;
  * Represents the lower half of the frame, showing the cards in the hand of the current player.
  */
 public class SanguineCardSectionPanel extends JPanel implements MainPanel {
-  private ViewModel model;
+  private final ViewModel model;
   private final Team team;
   private int previousCardIndex;
 
@@ -51,7 +51,7 @@ public class SanguineCardSectionPanel extends JPanel implements MainPanel {
   }
 
   @Override
-  public void subscribe(FeaturesListener listener) throws IllegalArgumentException {
+  public void subscribe(PlayerActionListener listener) throws IllegalArgumentException {
     if (listener == null) {
       throw new IllegalArgumentException("Listener cannot be null.");
     }
@@ -86,7 +86,7 @@ public class SanguineCardSectionPanel extends JPanel implements MainPanel {
    * @param listener is the FeaturesListener that calls it's method to handle a card click
    * @throws IllegalArgumentException if the listener is null
    */
-  private void highlightCard(FeaturesListener listener) throws IllegalArgumentException {
+  private void highlightCard(PlayerActionListener listener) throws IllegalArgumentException {
     if (listener == null) {
       throw new IllegalArgumentException("Listener cannot be null.");
     }
