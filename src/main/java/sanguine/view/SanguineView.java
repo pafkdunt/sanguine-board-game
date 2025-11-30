@@ -22,7 +22,7 @@ public interface SanguineView {
    * @param listener is the FeaturesListener that deals with the view's inputs
    * @throws IllegalArgumentException if the listener is null
    */
-  void subscribe(FeaturesListener listener) throws IllegalArgumentException;
+  void subscribe(PlayerActionListener listener) throws IllegalArgumentException;
 
   /**
    * Indicates the change of the turn by displaying a pop-up to the player whose turn it became.

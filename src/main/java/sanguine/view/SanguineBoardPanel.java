@@ -62,7 +62,7 @@ public class SanguineBoardPanel extends JPanel implements MainPanel {
   }
 
   @Override
-  public void subscribe(FeaturesListener listener) throws IllegalArgumentException {
+  public void subscribe(PlayerActionListener listener) throws IllegalArgumentException {
     if (listener == null) {
       throw new IllegalArgumentException("Listener cannot be null.");
     }
@@ -85,7 +85,7 @@ public class SanguineBoardPanel extends JPanel implements MainPanel {
    * @param listener is the FeaturesListener that calls it's method to handle a cell click
    * @throws IllegalArgumentException if the listener is null
    */
-  private void highlightCell(FeaturesListener listener) throws IllegalArgumentException {
+  private void highlightCell(PlayerActionListener listener) throws IllegalArgumentException {
     if (listener == null) {
       throw new IllegalArgumentException("Listener cannot be null.");
     }

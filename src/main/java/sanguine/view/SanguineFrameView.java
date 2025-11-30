@@ -77,7 +77,7 @@ public class SanguineFrameView extends JFrame implements SanguineView {
   }
 
   @Override
-  public void subscribe(FeaturesListener listener) throws IllegalArgumentException {
+  public void subscribe(PlayerActionListener listener) throws IllegalArgumentException {
     if (listener == null) {
       throw new IllegalArgumentException("Listener cannot be null.");
     }

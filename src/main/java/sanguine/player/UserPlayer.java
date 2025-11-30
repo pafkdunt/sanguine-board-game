@@ -1,7 +1,7 @@
 package sanguine.player;
 
 import sanguine.model.Team;
-import sanguine.view.FeaturesListener;
+import sanguine.view.ModelStatusListener;
 
 /**
  * Interface describing a user playing the game Sanguine.
@@ -43,8 +43,9 @@ public interface UserPlayer {
    * Assigns controller(s) to this player object.
    *
    * @param listener the controlling listener object
+   * @throws IllegalArgumentException if the input is null
    */
-  void subscribe(FeaturesListener listener);
+  void subscribe(ModelStatusListener listener) throws IllegalArgumentException;
 
   /**
    * Indicates whether it is this player object's turn.
