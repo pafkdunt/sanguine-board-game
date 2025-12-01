@@ -40,7 +40,7 @@ public interface UserPlayer {
   Team getTeam();
 
   /**
-   * Assigns controller(s) to this player object.
+   * Assigns model status listener(s) to this player object.
    *
    * @param listener the controlling listener object
    * @throws IllegalArgumentException if the input is null

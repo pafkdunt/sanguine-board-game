@@ -109,7 +109,7 @@ public class SanguineCardSectionPanel extends JPanel implements MainPanel {
         double cardWidth = (double) getWidth() / handSize;
         int index = ((int) Math.ceil(e.getX() / cardWidth)) - 1;
 
-        listener.handleCardClick(index, team);
+        listener.handleCardClick(index);
         SanguineCardSectionPanel.this.highlighting(index);
       }
     });

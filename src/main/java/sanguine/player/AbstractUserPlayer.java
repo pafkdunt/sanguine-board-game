@@ -2,6 +2,7 @@ package sanguine.player;
 
 import java.util.ArrayList;
 import java.util.List;
+import sanguine.ai.FillFirst;
 import sanguine.ai.MaximizeRowScore;
 import sanguine.ai.StrategicComputerPlayers;
 import sanguine.model.SanguineModel;
@@ -15,28 +16,35 @@ import sanguine.view.ModelStatusListener;
 public abstract class AbstractUserPlayer implements UserPlayer {
   private final SanguineModel model;
   private final List<ModelStatusListener> modelStatusListeners;
-  private final boolean machine;
+  private final String playerType;
+  private final StrategicComputerPlayers fillFirst;
+  private final StrategicComputerPlayers maxRow;
 
   /**
    * Constructs an abstract player.
    *
    * @param model is the model of the game Sanguine
+   * @param playerType is the type the player is (human, strategy1, or strategy2)
+   * @throws IllegalArgumentException if the model is null
    */
-  public AbstractUserPlayer(SanguineModel model, boolean machine) {
+  public AbstractUserPlayer(SanguineModel model, String playerType) {
     if (model == null) {
       throw new IllegalArgumentException("Model cannot be null.");
     }
 
     this.model = model;
-    this.machine = machine;
+    this.playerType = playerType;
     this.modelStatusListeners = new ArrayList<>();
+    this.fillFirst = new FillFirst(this.model, this.getTeam());
+    this.maxRow = new MaximizeRowScore(this.model, this.getTeam());
   }
 
   @Override
   public void move(int card, int row, int col) {
     if (isItMyTurn()) {
-      if (machine) {
-        StrategicComputerPlayers maxRow = new MaximizeRowScore(this.model, this.getTeam());
+      if (playerType.equals("strategy1")) {
+        fillFirst.makeMove();
+      } else if (playerType.equals("strategy2")) {
         maxRow.makeMove();
       } else {
         model.move(card, row, col);
@@ -47,7 +55,7 @@ public abstract class AbstractUserPlayer implements UserPlayer {
 
   @Override
   public void passTurn() {
-    if (isItMyTurn()) {
+    if (isItMyTurn() && playerType.equals("human")) {
       model.passTurn();
       if (model.isGameOver()) {
         String message;
@@ -77,6 +85,7 @@ public abstract class AbstractUserPlayer implements UserPlayer {
     }
 
     this.modelStatusListeners.add(listener);
+
   }
 
   /**

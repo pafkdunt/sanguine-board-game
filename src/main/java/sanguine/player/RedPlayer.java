@@ -11,10 +11,10 @@ public class RedPlayer extends AbstractUserPlayer {
    * Constructor for the Red player. Feeds in the model and a boolean whether they are a machine.
    *
    * @param model is the model for the player
-   * @param machine is the boolean determining if they are a machine or not
+   * @param playerType is the type the player is (human, strategy1, or strategy2)
    */
-  public RedPlayer(SanguineModel model, boolean machine) {
-    super(model, machine);
+  public RedPlayer(SanguineModel model, String playerType) {
+    super(model, playerType);
   }
 
   @Override
