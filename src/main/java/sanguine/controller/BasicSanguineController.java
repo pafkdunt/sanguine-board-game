@@ -25,6 +25,7 @@ public class BasicSanguineController implements SanguineController, PlayerAction
    * @param view is the view object that displays the game.
    * @param player is the player object that plays game.
    * @throws IllegalArgumentException if the view is null
+   * @throws IllegalArgumentException if the player is null
    */
   public BasicSanguineController(SanguineView view, UserPlayer player)
       throws IllegalArgumentException {
@@ -56,7 +57,7 @@ public class BasicSanguineController implements SanguineController, PlayerAction
   }
 
   @Override
-  public void handleCardClick(int index, Team team) {
+  public void handleCardClick(int index) {
     if (index == cardIndex) {
       cardIndex = -1;
     } else {
@@ -86,6 +87,8 @@ public class BasicSanguineController implements SanguineController, PlayerAction
       this.row = -1;
       this.col = -1;
       this.cardIndex = -1;
+    } else {
+      view.notifyError("Invalid key");
     }
   }
 

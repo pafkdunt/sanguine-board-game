@@ -20,9 +20,8 @@ public interface PlayerActionListener {
    * Handles when a card is clicked/selected for the game Sanguine.
    *
    * @param index the index of the card relative the players hand
-   * @param team the team of the player that clicked the card
    */
-  void handleCardClick(int index, Team team);
+  void handleCardClick(int index);
 
   /**
    * Handles when a key is pressed for a player to either move or pass their turn.

@@ -4,7 +4,7 @@
 This codebase creates the model for the game Sanguine, which is a variation of the card game Queen's Blood. This is a two player game, where there is Red and Blue player trying to score as many points as possible. The game is played by placing cards on a board, filling that boards' cells up with cards and pawns of the two teams. These components of the game come together to create the entire game.
 
 ### Extensibility
-The code base is relatively extensible. All basic functionality can be overridden and changed but it is good to be mindful of what changes are made. A key point of focus we would like look at is the `move()` method in BasicSanguineModel. This method calls a method of the SanguineBoard class called `performMove()` and so when extending this  code and modifying things it is good to keep in mind things like these. Similarly SanguineBoard uses methods from the SanguineCell class. Overall the components of the game are extensible, but require caution. The game model itself is quite extensible.
+The code base is relatively extensible. All basic functionality can be overridden and changed, but it is good to be mindful of what changes are made. A key point of focus we would like look at is the `move()` method in BasicSanguineModel. This method calls a method of the SanguineBoard class called `performMove()` and so when extending this  code and modifying things it is good to keep in mind things like these. Similarly, SanguineBoard uses methods from the SanguineCell class. Overall the components of the game are extensible, but require caution. The game model itself is quite extensible.
 
 
 # Quick start
@@ -37,7 +37,7 @@ public void testBlueMoves() {
 }
 ```
 
-This test shows how one would create a game model of Sanguine and how they would play the game with two player (Red and Blue). This is a example of a game being played out to completion.
+This test shows how one would create a game model of Sanguine and how they would play the game with two player (Red and Blue). This is an example of a game being played out to completion.
 
 # Key components
 
@@ -148,3 +148,29 @@ Class that implements the interface `StrategicComputerPlayers`, based on the str
 
 ### Maximize Row-Score
 Class that implements the interface `StrategicComputerPlayers`, based on the strategy to choose a card and location that will allow the current player to win a row, starting from the top. If no moves win a row, turn is passed
+
+
+# Changes for Part 3:
+
+### Pop-up Windows
+When certain messages need to be displayed like, when it turns have changed and a player needs to know it's their turn, or if a player makes an illegal move, a small pop-up will show with a message relaying that bit of information so that they can understand what it is that happened and what their options are.
+
+Specific cases where these pop-ups occur: 
+- it's the players turn now
+- the game is over (shows who won and their score)
+- they have made an improper move (cell selected was not theirs or did not have enough pawns)
+
+One part to note about our pop-ups is that if you have both views on the same screen the pop-ups will show up above both of them. This occurs as we wanted to get around the fact that a pop-up prevents anything else from occurring until it has been dismissed by either closing the window or hitting 'OK'. This is something that we found acceptable as we visualized this game occurring on two screens, kind of like the online very of Queen's Blood. In that scenario the pop-ups for one player would have no affect on the other, and so we treated them this way.
+
+### Game Over
+When the game is over two pop-up windows show up, one for each view telling both players what the result of the game is (who won and that players score if there was not a tie). Both players are then stopped from making any more moves.
+
+### Players
+The player class represents a player of the game Sanguine. This player can be a human or a strategic computer player and has the primary abilities to make a move or pass their turn. They can also ask whether it is their turn yet, see what team they are on, and subscribe to listeners to publish notifications when something relating to a change in model status occurs. 
+
+### The Two Listener Types
+There are two listener types a `PlayerActionListener` and a `ModelStatusListener`. The player action listener methods are called in the view and related to actual actions the player takes interacting with the view, and sends those to the listener (controller) to use the input from those actions towards playing the game. The model status listener methods are called by the player class and related to the status of the model and how that affects how the game looks (primarily relating to showing the relevant pop-up windows).
+
+The player action listener can be viewed as the view communicating to the model. The model status listener can be viewed as the model/player communicating to the view through the controller.
+
+The controller implements both of these interface types and is the sole listener of the game Sanguine.

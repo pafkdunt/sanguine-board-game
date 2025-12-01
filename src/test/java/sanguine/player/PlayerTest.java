@@ -7,12 +7,13 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 import sanguine.model.BasicSanguineModel;
+import sanguine.model.SanguineModel;
 import sanguine.model.Team;
 
 /**
  * Test class for the player object in the game Sanguine.
  */
-public class PlayerTests {
+public class PlayerTest {
   private UserPlayer redPlayer;
   private UserPlayer bluePlayer;
 
@@ -21,12 +22,12 @@ public class PlayerTests {
    */
   @Before
   public void setUp() {
-    BasicSanguineModel model =
+    SanguineModel model =
         new BasicSanguineModel(3, 5, 7, "docs/exampleScreenshot.deck",
             "docs/exampleScreenshot.deck", false);
 
-    this.redPlayer = new RedPlayer(model, false);
-    this.bluePlayer = new BluePlayer(model, false);
+    this.redPlayer = new RedPlayer(model, "human");
+    this.bluePlayer = new BluePlayer(model, "human");
 
     redPlayer.subscribe(new MockModelStatusListener());
     redPlayer.subscribe(new MockModelStatusListener());
@@ -36,8 +37,8 @@ public class PlayerTests {
 
   @Test(expected = IllegalArgumentException.class)
   public void testInvalidConstruction() {
-    UserPlayer testRedPlayer = new RedPlayer(null, false);
-    UserPlayer testBluePlayer = new BluePlayer(null, false);
+    UserPlayer testRedPlayer = new RedPlayer(null, "human");
+    UserPlayer testBluePlayer = new BluePlayer(null, "human");
   }
 
   @Test(expected = IllegalStateException.class)

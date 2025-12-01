@@ -1,9 +1,11 @@
 package sanguine.ai;
 
+import java.util.ArrayList;
 import java.util.List;
 import sanguine.model.Card;
 import sanguine.model.SanguineModel;
 import sanguine.model.Team;
+import sanguine.view.ModelStatusListener;
 
 /**
  * Class representing the strategy of placing first card that would win a row, moving from the top.
@@ -11,6 +13,7 @@ import sanguine.model.Team;
 public class MaximizeRowScore implements StrategicComputerPlayers {
   private final SanguineModel model;
   private final Team team;
+  private final List<ModelStatusListener> modelStatusListeners;
 
   /**
    * Constructs an object that behaves as the specified computer player.
@@ -24,6 +27,7 @@ public class MaximizeRowScore implements StrategicComputerPlayers {
     }
     this.model = model;
     this.team = team;
+    this.modelStatusListeners = new ArrayList<>();
   }
 
   @Override
@@ -61,5 +65,27 @@ public class MaximizeRowScore implements StrategicComputerPlayers {
     }
 
     model.passTurn();
+    if (model.isGameOver()) {
+      String message;
+      Team winner = model.findWinner();
+
+      if (winner == null) {
+        message = "Game ended in a tie.";
+      } else {
+        message = winner + " won with score of " + model.getCurrentScore(winner);
+      }
+
+      modelStatusListeners.get(0).handleGameOver(winner, message);
+      modelStatusListeners.get(1).handleGameOver(winner, message);
+    }
+  }
+
+  @Override
+  public void subscribe(ModelStatusListener listener) throws IllegalArgumentException {
+    if (listener == null) {
+      throw new IllegalArgumentException("Listener cannot be null");
+    }
+
+    this.modelStatusListeners.add(listener);
   }
 }
