@@ -55,19 +55,6 @@ public class BasicSanguineControllerTest {
 
   // ====== Player Action Tests ====== \\
 
-  // - test handleCellClick ???
-  @Test
-  public void testCellClick() {
-
-  }
-
-  // - test handleCardClick ???
-  @Test
-  public void testCardClick() {
-
-  }
-
-
   @Test
   public void testHandleKeyPressedInvalidKey() {
     Appendable log = new StringBuilder();
@@ -93,6 +80,7 @@ public class BasicSanguineControllerTest {
     assertEquals("Card: -1, Row: -1, Col: -1", log.toString());
   }
 
+  // this also tests handleCardClick() and handleCellClick()
   @Test
   public void testHandleKeyPressedMoveSelection() {
     Appendable log = new StringBuilder();
