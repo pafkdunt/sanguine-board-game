@@ -1,0 +1,11 @@
+# Force Java as the primary language
+*.java linguist-language=Java
+
+# Tell GitHub to ignore JavaFX UI files
+*.fxml linguist-vendored
+*.css linguist-vendored
+*.html linguist-vendored
+*.xml linguist-vendored
+
+# Ignore resources that aren't "code"
+src/main/resources/* linguist-vendored
