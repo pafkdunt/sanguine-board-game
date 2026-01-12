@@ -6,7 +6,8 @@ This codebase creates the model for the game Sanguine, which is a variation of t
 ### Extensibility
 The code base is relatively extensible. All basic functionality can be overridden and changed, but it is good to be mindful of what changes are made. A key point of focus we would like look at is the `move()` method in BasicSanguineModel. This method calls a method of the SanguineBoard class called `performMove()` and so when extending this  code and modifying things it is good to keep in mind things like these. Similarly, SanguineBoard uses methods from the SanguineCell class. Overall the components of the game are extensible, but require caution. The game model itself is quite extensible.
 
-Disclaimer: This repository contains my personal work from a Northeastern University course. It is published for portfolio and learning purposes only.
+## Disclaimer
+This repository contains my personal work from a Northeastern University course. It is published for portfolio and learning purposes only.
 
 # Quick start
 
